@@ -111,67 +111,46 @@ app.get("/database", (req, res) => {
         //member info
         chairman: {
             name: "Ayden Lim",
-            age: 14,
         },
 
-        high_council1: {
-            name: "Luca Korolev",
-            age: 14,
+        high_council: {
+            name: ["Luca Korolev", "Kaidi Hsu"],
         },
 
-        high_council2: {
-            name: "Kaidi Hsu",
-            age: null,
+        honoured_member: {
+            name: [null],
         },
 
-        honoured_member1: {
-            name: null,
-            age: null,
+        member: {
+            name: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Vishesh Kudva",],
         },
 
-        member1: {
-            name: "Orion Huang",
-            age: null,
+        caution: {
+            name: ["Marcus"],
         },
 
-        member2: {
-            name: null,
-            age: null,
+        neutral: {
+            name: [null],
         },
 
-        caution1: {
-            name: null,
-            age: null,
+        protester: {
+            name: [null],
         },
 
-        neutral1: {
-            name: null,
-            age: null,
+        enemy: {
+            name: ["Mr Bevan Galbraith", "Aaron Liu", "Mr Timothy Dent"],
         },
 
-        protester1: {
-            name: null,
-            age: null,
+        betrayer: {
+            name: [null],
         },
 
-        enemy1: {
-            name: null,
-            age: null,
+        target: {
+            name: [null],
         },
 
-        betrayer1: {
-            name: null,
-            age: null,
-        },
-
-        targer1: {
-            name: null,
-            age: null,
-        },
-
-        high_threat1: {
-            name: null,
-            age: null,
+        high_threat: {
+            name: ["Connor McCracken"],
         },
     });
 
@@ -347,7 +326,7 @@ app.post("/login", (req, res) => {
             } else {
                 var time = "AM";
             }
-    console.log(`URGENT: attempted login with username: ${req.body.username} and password: ${req.body.password}`);
+    console.log(`URGENT: attempted login with username: "${req.body.username}" and password: "${req.body.password}"`);
     console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
     console.log(``);
 

@@ -12,10 +12,20 @@
     <table>
         <tr>
             <td>
-                <p>Chairman</p>
+                <p><b>Chairman:</b></p>
             </td>
             <td>
-                <p><%- chairman, name %></p>
+                <p>Ayden Lim</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>Members:</b></p>
+            </td>
+            <td>
+                <% for(i = 0, i <= members.length, i++,) { %>
+                    <p><%- members[i] %></p>
+                <% } %>
             </td>
         </tr>
     </table>
