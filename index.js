@@ -77,7 +77,7 @@ app.get("/", (req, res) => {
             var time = "AM";
         }
 
-    console.log(`Password page loaded. (${paswrdPgLoadCount})`);
+    console.log(`Signed out page loaded. (${paswrdPgLoadCount})`);
     console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
     console.log(``);
     paswrdPgLoadCount++;
@@ -295,7 +295,7 @@ app.get("/login.ejs", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-    if ((req.body.username === "Visheshbons" && req.body.password === "Prev Loves Me 2") || (req.body.username === "Mao Is Great" && req.body.password === "All Hail Mao")) {
+    if ((req.body.username === "Vishesh Kudva" && req.body.password === "Prev Loves Me 2") || (req.body.username === "Mao Is Great" && req.body.password === "All Hail Mao")) {
         res.redirect("/database");
     } else {
         res.redirect("/login.ejs");
