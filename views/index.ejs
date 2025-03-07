@@ -22,13 +22,13 @@
         num = `too many loads (${userNum})`;
     } %>
 
-    <% if (testing) {
+    <% if (testing == true) {
         link = "database.ejs";
     } else {
         link = "login.ejs";
     } %>
 
-    <a href="database.ejs">Login</a>
+    <a href="<%- link %>">Login</a>
     <h1>Diminished Rights Database</h1>
 
     <% if (first) { %>
