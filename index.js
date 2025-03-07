@@ -1,4 +1,5 @@
 // import express from "express";
+import { EventEmitterAsyncResource } from "events";
 import express from "express";
 
 const app = express();
@@ -7,10 +8,102 @@ const portForward = true;
 
 let pagesLoaded = 1;
 
+
+
+
+
+
+
+
+
+
+// add rendering code
+
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render("index.ejs", {
+
+        // number of each type of member
+        chairman_num: 1,
+        high_council_num: 2,
+        honoured_member_num: 1,
+        member_num: 2,
+        caution_num: 1,
+        neutral_num: 1,
+        protester_num: 1,
+        enemy_num: 1,
+        betrayer_num: 1,
+        target_num: 1,
+        high_threat_num: 1,
+
+
+        //member info
+        chairman: {
+            name: "Ayden Lim",
+            age: 14,
+        },
+
+        high_council1: {
+            name: "Luca Korolev",
+            age: 14,
+        },
+
+        high_council2: {
+            name: "Kaidi Hsu",
+            age: null,
+        },
+
+        honoured_member1: {
+            name: null,
+            age: null,
+        },
+
+        member1: {
+            name: "Orion Huang",
+            age: null,
+        },
+
+        member2: {
+            name: null,
+            age: null,
+        },
+
+        caution1: {
+            name: null,
+            age: null,
+        },
+
+        neutral1: {
+            name: null,
+            age: null,
+        },
+
+        protester1: {
+            name: null,
+            age: null,
+        },
+
+        enemy1: {
+            name: null,
+            age: null,
+        },
+
+        betrayer1: {
+            name: null,
+            age: null,
+        },
+
+        targer1: {
+            name: null,
+            age: null,
+        },
+
+        high_threat1: {
+            name: null,
+            age: null,
+        },
+    });
     console.log(`Page loaded. (${pagesLoaded})`);
     pagesLoaded++;
 });
