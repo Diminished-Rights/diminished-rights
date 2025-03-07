@@ -107,18 +107,27 @@ app.get("/database", (req, res) => {
         target_: false,
         high_threat_: true,
 
-        // member info
+        // member hierarchy
         chairman: ["Ayden Lim"],
         high_council: ["Luca Korolev", "Kaidi Hsu"],
-        honoured_members: [null],
+        honoured_members: ["None yet"],
         members: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Vishesh Kudva"],
-        caution: ["Marcus"],
-        neutral: [null],
-        protesters: [null],
+        caution: ["Marcus", "Aaron Liu"],
+        neutral: ["None yet"],
+        protesters: ["Roland Liu"],
         enemies: ["Mr Bevan Galbraith", "Aaron Liu", "Mr Timothy Dent"],
-        betrayers: [null],
-        targets: [null],
+        betrayers: ["None yet"],
+        targets: ["Alex Kim"],
         high_threat: ["Connor McCracken"],
+
+        // member roles
+        junior_branch_leader: ["None yet"],
+        head_of_act: ["Ayden Lim"],
+        head_of_intelligence: ["None yet"],
+        head_of_defence: ["Luca Korolev"],
+        head_of_secretery: ["None yet"],
+        award_manager: ["None yet"],
+        web_developer: ["Vishesh Kudva"],
     });
 
         // get current date

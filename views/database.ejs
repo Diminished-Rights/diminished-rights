@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DATABASE</title>
 </head>
-<body>
-    <a href="index.ejs">Logout</a>
+<body id="top">
+    <a href="/">Logout</a>
 
     <h1>Database of People</h1>
+    <a href="#Roles">To Roles</a>
+    <h2 id="Hierachy">Hierachy</h2>
     <table>
         <tr>
             <td>
@@ -131,6 +133,25 @@
             </td>
         </tr>
     </table>
+    <br>
+    <br>
+
+
+    <a href="#Hierachy">To Hierachy</a>
+    <h2 id="Roles">Roles</h2>
+    <table>
+        <tr>
+            <td>
+                <p><b>Junior Branch Leader</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < junior_branch_leader.length; i++) { %>
+                <p><%= i + 1 %>: <%= junior_branch_leader[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+    </table>
+    <a href="#top">Back to top</a>
 </body>
 
 <script>
