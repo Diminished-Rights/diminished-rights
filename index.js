@@ -295,7 +295,7 @@ app.get("/login.ejs", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-    if (req.body.username === "admin" && req.body.password === "admin") {
+    if ((req.body.username === "Visheshbons" && req.body.password === "Prev Loves Me 2") || (req.body.username === "Mao Is Great" && req.body.password === "All Hail Mao")) {
         res.redirect("/database");
     } else {
         res.redirect("/login.ejs");
