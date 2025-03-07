@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles.css">
     <title>Diminished Rights Database</title>
 </head>
-<body>
+<body id="index-ejs">
     <% var num = "Err404";
     var first = false; %>
 
@@ -28,7 +28,7 @@
     <% if (first) { %>
         <p>Welcome to the Diminished Rights Database. This is the first time this site has been loaded since the last terminal reset.</p>
     <% } else { %>
-        <p>This is the <%- num %> of this site since the last terminal reset.</p>
+        <p>This is the <%- num %> of this site since the last terminal reset, at <%- terminalDate %>.</p>
     <% } %>
 
 </body>

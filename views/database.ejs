@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>DATABASE</title>
 </head>
 <body id="top">
@@ -18,123 +19,114 @@
             </td>
             <td>
             <% for (let i = 0; i < chairman.length; i++) { %>
-                <p><%= i + 1 %>: <%= chairman[i] %></p>                
+                <p> <%= chairman[i] %></p>                
             <% } %>
             </td>
         </tr>
-<br>
         <tr>
             <td>
                 <p><b>High Council Members:</b></p>
             </td>
             <td>
             <% for (let i = 0; i < high_council.length; i++) { %>
-                <p><%= i + 1 %>: <%= high_council[i] %></p>
+                <p> <%= high_council[i] %></p>
             <% } %>
             </td>
         </tr>
-<br>
         <tr>
             <td>
                 <p><b>Hounoured Members:</b></p>
             </td>
             <td>
             <% for (let i = 0; i < honoured_members.length; i++) { %>
-                <p><%= i + 1 %>: <%= honoured_members[i] %></p>
+                <p> <%= honoured_members[i] %></p>
             <% } %>
             </td>
         </tr>
-<br>
         <tr>
             <td>
                 <p><b>Members:</b></p>
             </td>
             <td>
             <% for (let i = 0; i < members.length; i++) { %>
-                <p><%= i + 1 %>: <%= members[i] %></p>
+                <p> <%= members[i] %></p>
             <% } %>
             </td>
         </tr>
-<br>
         <tr>
             <td>
                 <p><b>Caution:</b></p>
             </td>
             <td>
             <% for (let i = 0; i < caution.length; i++) { %>
-                <p><%= i + 1 %>: <%= caution[i] %></p>                
+                <p> <%= caution[i] %></p>                
             <% } %>
             </td>
         </tr>
-<br>
         <tr>
             <td>
                 <p><b>Neutral</b></p>
             </td>
             <td>
             <% for (let i = 0; i < neutral.length; i++) { %>
-                <p><%= i + 1 %>: <%= neutral[i] %></p>
+                <p> <%= neutral[i] %></p>
             <% } %>
             </td>
         </tr>
-<br>
         <tr>
             <td>
                 <p><b>Protesters:</b></p>
             </td>
             <td>
             <% for (let i = 0; i < protesters.length; i++) { %>
-                <p><%= i + 1 %>: <%= protesters[i] %></p>
+                <p> <%= protesters[i] %></p>
             <% } %>
             </td>
         </tr>
-<br>
         <tr>
             <td>
                 <p><b>Enemies:</b></p>
             </td>
             <td>
             <% for (let i = 0; i < enemies.length; i++) { %>
-                <p><%= i + 1 %>: <%= enemies[i] %></p>
+                <p> <%= enemies[i] %></p>
             <% } %>
             </td>
         </tr>
-<br>
         <tr>
             <td>
                 <p><b>Betrayers:</b></p>
             </td>
             <td>
             <% for (let i = 0; i < betrayers.length; i++) { %>
-                <p><%= i + 1 %>: <%= betrayers[i] %></p>
+                <p> <%= betrayers[i] %></p>
             <% } %>
             </td>
         </tr>
-<br>
+        <hr>
         <tr>
             <td>
                 <p><b>Targets</b></p>
             </td>
             <td>
             <% for (let i = 0; i < targets.length; i++) { %>
-                <p><%= i + 1 %>: <%= targets[i] %></p>
+                <p> <%= targets[i] %></p>
             <% } %>
             </td>
         </tr>
-<br>
         <tr>
             <td>
                 <p><b>High Threat</b></p>
             </td>
             <td>
             <% for (let i = 0; i < high_threat.length; i++) { %>
-                <p><%= i + 1 %>: <%= high_threat[i] %></p>
+                <p> <%= high_threat[i] %></p>
             <% } %>
             </td>
         </tr>
     </table>
-    <br>
-    <br>
+    <hr>
+    <hr>
 
 
     <a href="#Hierachy">To Hierachy</a>
@@ -146,7 +138,67 @@
             </td>
             <td>
             <% for (let i = 0; i < junior_branch_leader.length; i++) { %>
-                <p><%= i + 1 %>: <%= junior_branch_leader[i] %></p>
+                <p> <%= junior_branch_leader[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>Head of Act</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < head_of_act.length; i++) { %>
+                <p> <%= head_of_act[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>Head of Intelligence</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < head_of_intelligence.length; i++) { %>
+                <p> <%= head_of_intelligence[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>Head of Defence</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < head_of_defence.length; i++) { %>
+                <p> <%= head_of_defence[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>Head of Secretery</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < head_of_secretery.length; i++) { %>
+                <p> <%= head_of_secretery[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>Award Manager</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < award_manager.length; i++) { %>
+                <p> <%= award_manager[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>Web Developer</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < web_developer.length; i++) { %>
+                <p> <%= web_developer[i] %></p>
             <% } %>
             </td>
         </tr>
