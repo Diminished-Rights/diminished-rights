@@ -233,10 +233,7 @@ app.get("/database", (req, res) => {
 });
 
 app.get("/login.ejs", (req, res) => {
-    res.render("login.ejs", {
-        Username: "Username",
-        Password: "Password",
-    });
+    res.render("login.ejs");
         // get current date
         let date_time = new Date();
 
