@@ -6,7 +6,8 @@ const app = express();
 const port = 1500;
 const portForward = true;
 
-let pagesLoaded = 1;
+let paswrdPgLoadCount = 1;
+let DatabaseLoadCount = 1;
 
 
 
@@ -22,7 +23,21 @@ let pagesLoaded = 1;
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.render("index.ejs", {
+    res.render("index.ejs");
+    console.log(`Password page loaded. (${paswrdPgLoadCount})`);
+    paswrdPgLoadCount++;
+});
+
+app.get("/index.ejs", (req, res) => {
+    res.redirect("/");
+})
+
+app.get("/database.ejs", (req, res) => {
+    res.redirect("/database");
+});
+
+app.get("/database", (req, res) => {
+    res.render("database.ejs", {
 
         // number of each type of member
         chairman_num: 1,
@@ -104,8 +119,8 @@ app.get("/", (req, res) => {
             age: null,
         },
     });
-    console.log(`Page loaded. (${pagesLoaded})`);
-    pagesLoaded++;
+    console.log(`ALERT: Database page loaded. (${DatabaseLoadCount})`);
+    DatabaseLoadCount++;
 });
 
 // listen to port
