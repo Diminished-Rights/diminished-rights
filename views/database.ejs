@@ -15,19 +15,126 @@
                 <p><b>Chairman:</b></p>
             </td>
             <td>
-                <p>Ayden Lim</p>
+            <% for (let i = 0; i < chairman.length; i++) { %>
+                <p><%= i + 1 %>: <%= chairman[i] %></p>                
+            <% } %>
             </td>
         </tr>
+<br>
+        <tr>
+            <td>
+                <p><b>High Council Members:</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < high_council.length; i++) { %>
+                <p><%= i + 1 %>: <%= high_council[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+<br>
+        <tr>
+            <td>
+                <p><b>Hounoured Members:</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < honoured_members.length; i++) { %>
+                <p><%= i + 1 %>: <%= honoured_members[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+<br>
         <tr>
             <td>
                 <p><b>Members:</b></p>
             </td>
             <td>
-                <% for(i = 0, i <= members.length, i++,) { %>
-                    <p><%- members[i] %></p>
-                <% } %>
+            <% for (let i = 0; i < members.length; i++) { %>
+                <p><%= i + 1 %>: <%= members[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+<br>
+        <tr>
+            <td>
+                <p><b>Caution:</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < caution.length; i++) { %>
+                <p><%= i + 1 %>: <%= caution[i] %></p>                
+            <% } %>
+            </td>
+        </tr>
+<br>
+        <tr>
+            <td>
+                <p><b>Neutral</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < neutral.length; i++) { %>
+                <p><%= i + 1 %>: <%= neutral[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+<br>
+        <tr>
+            <td>
+                <p><b>Protesters:</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < protesters.length; i++) { %>
+                <p><%= i + 1 %>: <%= protesters[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+<br>
+        <tr>
+            <td>
+                <p><b>Enemies:</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < enemies.length; i++) { %>
+                <p><%= i + 1 %>: <%= enemies[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+<br>
+        <tr>
+            <td>
+                <p><b>Betrayers:</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < betrayers.length; i++) { %>
+                <p><%= i + 1 %>: <%= betrayers[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+<br>
+        <tr>
+            <td>
+                <p><b>Targets</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < targets.length; i++) { %>
+                <p><%= i + 1 %>: <%= targets[i] %></p>
+            <% } %>
+            </td>
+        </tr>
+<br>
+        <tr>
+            <td>
+                <p><b>High Threat</b></p>
+            </td>
+            <td>
+            <% for (let i = 0; i < high_threat.length; i++) { %>
+                <p><%= i + 1 %>: <%= high_threat[i] %></p>
+            <% } %>
             </td>
         </tr>
     </table>
 </body>
+
+<script>
+    alert(`The database is now holding sensitive info. Be careful who you share this data with.`);
+</script>
+
 </html>

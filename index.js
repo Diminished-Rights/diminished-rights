@@ -95,63 +95,30 @@ app.get("/database", (req, res) => {
     res.render("database.ejs", {
 
         // number of each type of member
-        chairman_num: 1,
-        high_council_num: 2,
-        honoured_member_num: 1,
-        member_num: 2,
-        caution_num: 1,
-        neutral_num: 1,
-        protester_num: 1,
-        enemy_num: 1,
-        betrayer_num: 1,
-        target_num: 1,
-        high_threat_num: 1,
+        chairman_: true,
+        high_council_: true,
+        honoured_member_: false,
+        member_: true,
+        caution_: true,
+        neutral_: false,
+        protester_: false,
+        enemy_: true,
+        betrayer_: false,
+        target_: false,
+        high_threat_: true,
 
-
-        //member info
-        chairman: {
-            name: "Ayden Lim",
-        },
-
-        high_council: {
-            name: ["Luca Korolev", "Kaidi Hsu"],
-        },
-
-        honoured_member: {
-            name: [null],
-        },
-
-        member: {
-            name: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Vishesh Kudva",],
-        },
-
-        caution: {
-            name: ["Marcus"],
-        },
-
-        neutral: {
-            name: [null],
-        },
-
-        protester: {
-            name: [null],
-        },
-
-        enemy: {
-            name: ["Mr Bevan Galbraith", "Aaron Liu", "Mr Timothy Dent"],
-        },
-
-        betrayer: {
-            name: [null],
-        },
-
-        target: {
-            name: [null],
-        },
-
-        high_threat: {
-            name: ["Connor McCracken"],
-        },
+        // member info
+        chairman: ["Ayden Lim"],
+        high_council: ["Luca Korolev", "Kaidi Hsu"],
+        honoured_members: [null],
+        members: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Vishesh Kudva"],
+        caution: ["Marcus"],
+        neutral: [null],
+        protesters: [null],
+        enemies: ["Mr Bevan Galbraith", "Aaron Liu", "Mr Timothy Dent"],
+        betrayers: [null],
+        targets: [null],
+        high_threat: ["Connor McCracken"],
     });
 
         // get current date
@@ -271,11 +238,6 @@ app.get("/login.ejs", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-    if ((req.body.username === "Vishesh Kudva" && req.body.password === "Prev Loves Me 2") || (req.body.username === "Mao Is Great" && req.body.password === "All Hail Mao")) {
-        res.redirect("/database");
-    } else {
-        res.redirect("/login.ejs");
-
             // get current date
             let date_time = new Date();
 
@@ -326,9 +288,17 @@ app.post("/login", (req, res) => {
             } else {
                 var time = "AM";
             }
-    console.log(`URGENT: attempted login with username: "${req.body.username}" and password: "${req.body.password}"`);
-    console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
-    console.log(``);
+
+    if ((req.body.username === "Vishesh Kudva" && req.body.password === "Prev Loves Me 2") || (req.body.username === "Mao Is Great" && req.body.password === "All Hail Mao")) {
+        res.redirect("/database");
+        console.log(`Successful login with username: "${req.body.username}" and password: "${req.body.password}"`);
+        console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
+        console.log(``);
+    } else {
+        res.redirect("/login.ejs");
+        console.log(`URGENT: attempted login with username: "${req.body.username}" and password: "${req.body.password}"`);
+        console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
+        console.log(``);
 
     }
 });
