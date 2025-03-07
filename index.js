@@ -298,7 +298,12 @@ app.post("/login", (req, res) => {
                 var time = "AM";
             }
 
-    if ((req.body.username === "Vishesh Kudva" && req.body.password === "Prev Loves Me 2") || (req.body.username === "Mao Is Great" && req.body.password === "All Hail Mao")) {
+    if (
+        (req.body.username === "admin" && req.body.password === "Prev Loves Me 2") 
+        || (req.body.username === "Mao Is Great" && req.body.password === "All Hail Mao")
+        || (req.body.username === "Ayden Lim" && req.body.password === "Mao is Great")
+        || (req.body.username === "Luca Korolev" && req.body.password === "MyPasswordIsNotWeakB3causeItIsSoLong!")
+    ) {
         res.redirect("/database");
         console.log(`Successful login with username: "${req.body.username}" and password: "${req.body.password}"`);
         console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
