@@ -362,6 +362,11 @@ app.post("/login", (req, res) => {
         console.log(`Successful login with username: "${req.body.username}" and password: "${req.body.password}"`);
         console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
         console.log(``);
+    } else if (req.body.username === "rickroll me" && req.body.password === "please") {
+        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        console.log(`User Rickrolled.`);
+        console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
+        console.log(``);
     } else {
         res.redirect("/login.ejs");
         console.log(`URGENT: attempted login with username: "${req.body.username}" and password: "${req.body.password}"`);
