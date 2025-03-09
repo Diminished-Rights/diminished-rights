@@ -1,3 +1,5 @@
+console.time("Loading time");
+
 // import express from "express";
 import { EventEmitterAsyncResource } from "events";
 import express from "express";
@@ -390,8 +392,7 @@ if (req.body.username == "rickroll me" && req.body.password == "please") {
 app.listen(port, () => {
 
     // show date and time of program start
-    console.log(`Program started running at:`);
-    console.log(dateAndTime);
+    console.timeEnd("Loading time");
     console.log(``);
 
     // get current date
