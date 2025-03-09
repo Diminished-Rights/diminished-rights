@@ -362,6 +362,7 @@ for (let i = 0; i < usernames.length; i++) {
     console.log(`Checking username and password...` + chalk.dim(`(${i + 1}/${usernames.length})`));
     if (req.body.username == usernames[i] && req.body.password == passwords[i]) {
         res.redirect("database.ejs")
+        console.log(`Match found!`);
         console.log(`User ` + chalk.green(req.body.username) + ` logged in successfully.`);
         console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
         console.log(``);
