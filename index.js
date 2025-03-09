@@ -361,7 +361,7 @@ app.post("/login", (req, res) => {
 
 // 'for' loop to check if username and password match ones in database
 for (let i = 0; i < usernames.length; i++) {
-    console.log(`Checking username and password...` + chalk.dim(`(${i + 1}/${usernames.length})`));
+    console.log(`Checking username and password... ` + chalk.dim(`(${i + 1}/${usernames.length})`));
     if (req.body.username == usernames[i] && req.body.password == passwords[i]) {
         res.redirect("database.ejs")
         console.log(`Match found!`);
