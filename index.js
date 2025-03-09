@@ -132,7 +132,7 @@ app.get("/", (req, res) => {
             var time = "AM";
         }
 
-    console.log(`Signed out page loaded. (${paswrdPgLoadCount})`);
+    console.log(`Home page loaded. (${paswrdPgLoadCount})`);
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
     console.log(``);
     paswrdPgLoadCount++;
@@ -295,13 +295,13 @@ app.get("/login.ejs", (req, res) => {
             var time = "AM";
         }
 
-    console.log(chalk.green(`Login page loaded. (${LoginLoadCount})`));
+    console.log(`Login page loaded. (${LoginLoadCount})`);
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
     console.log(``);
     LoginLoadCount++;
 });
 
-app.post("/login", (req, res) => {
+app.post("/login.ejs", (req, res) => {
             // get current date
             let date_time = new Date();
 
@@ -360,7 +360,7 @@ app.post("/login", (req, res) => {
         || (req.body.username === "Luca Korolev" && req.body.password === "MyPasswordIsNotWeakB3causeItIsSoLong!")
     ) {
         res.redirect("/database");
-        console.log(`Successful login with username: "${req.body.username}" and password: "${req.body.password}"`);
+        console.log(chalk.green(`Successful login with username: "${req.body.username}" and password: "${req.body.password}"`));
         console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
         console.log(``);
     } else if (req.body.username === "rickroll me" && req.body.password === "please") {
@@ -372,9 +372,7 @@ app.post("/login", (req, res) => {
         res.redirect("/login.ejs");
         console.log(chalk.bgRed.yellow(`URGENT:`) + chalk.red(` attempted login with username: "${req.body.username}" and password: "${req.body.password}"`));
         console.log(chalk.yellowBright.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
-        console.log(``);
-
-    }
+    };
 });
 
 // listen to port
@@ -447,9 +445,9 @@ app.listen(port, () => {
     console.log(``);
 
     // log website info
-    console.log(`Go to http://localhost:${port} to view the website.`);
+    console.log(`Go to ` + chalk.dim(`http://localhost:${port}`) + ` to view the website.`);
     if (portForward) {
-        console.log(`Go to https://p9npwlmh-${port}.aue.devtunnels.ms/ to view the website.`);
+        console.log(`Go to ` + chalk.dim(`https://p9npwlmh-${port}.aue.devtunnels.ms/`) +` to view the website.`);
     };
     console.log(``);
 
