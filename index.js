@@ -14,6 +14,9 @@ let DatabaseLoadCount = 1;
 let LoginLoadCount = 1;
 let testingBoolean = false;
 
+const usernames = ["admin", "Mao Is Great", "Ayden Lim", "Luca Korolev"];
+const passwords = ["Prev Loves Me 2", "All Hail Mao", "Mao is Great", "MyPasswordIsNotWeakB3causeItIsSoLong!"];
+
 // get current date
 let date_time = new Date();
 
@@ -236,7 +239,7 @@ app.get("/database", (req, res) => {
             var time = "AM";
         }
 
-    console.log(chalk.yellow.bgRed(`ALERT:`) + chalk.yellow(` Database page loaded. (${DatabaseLoadCount})`));
+    console.log(` Database page loaded. (${DatabaseLoadCount})`);
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
     console.log(``);
     DatabaseLoadCount++;
@@ -301,7 +304,7 @@ app.get("/login.ejs", (req, res) => {
     LoginLoadCount++;
 });
 
-app.post("/login.ejs", (req, res) => {
+app.post("/login", (req, res) => {
             // get current date
             let date_time = new Date();
 
@@ -353,26 +356,27 @@ app.post("/login.ejs", (req, res) => {
                 var time = "AM";
             }
 
-    if (
-        (req.body.username === "admin" && req.body.password === "Prev Loves Me 2") 
-        || (req.body.username === "Mao Is Great" && req.body.password === "All Hail Mao")
-        || (req.body.username === "Ayden Lim" && req.body.password === "Mao is Great")
-        || (req.body.username === "Luca Korolev" && req.body.password === "MyPasswordIsNotWeakB3causeItIsSoLong!")
-    ) {
-        res.redirect("/database");
-        console.log(chalk.green(`Successful login with username: "${req.body.username}" and password: "${req.body.password}"`));
+for (let i = 0; i < usernames.length; i++) {
+    console.log(`Checking username and password...` + chalk.dim(`(${i + 1}/${usernames.length})`));
+    if (req.body.username == usernames[i] && req.body.password == passwords[i]) {
+        res.redirect("database.ejs")
+        console.log(`User ` + chalk.green(req.body.username) + ` logged in successfully.`);
         console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
         console.log(``);
-    } else if (req.body.username === "rickroll me" && req.body.password === "please") {
-        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-        console.log(`User Rickrolled.`);
-        console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
-        console.log(``);
-    } else {
-        res.redirect("/login.ejs");
-        console.log(chalk.bgRed.yellow(`URGENT:`) + chalk.red(` attempted login with username: "${req.body.username}" and password: "${req.body.password}"`));
-        console.log(chalk.yellowBright.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
-    };
+        return;
+    }
+} if (req.body.username == "rickroll me" && req.body.password == "please") {
+    res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    console.log(`User  rickrolled successfully.`);
+    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
+    console.log(``);
+} else  {
+    res.redirect("login.ejs");
+    console.log(chalk.bgRed.yellowBright(`ALERT:`) + chalk.yellowBright(` Username ` + chalk.red(req.body.username) + ` and password ` + chalk.red(req.body.password) + ` not found in database.`));
+    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
+    console.log(``);
+}
+
 });
 
 // listen to port
