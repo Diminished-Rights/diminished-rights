@@ -369,7 +369,7 @@ app.post("/login", (req, res) => {
         console.log(``);
     } else {
         res.redirect("/login.ejs");
-        console.log(`URGENT: attempted login with username: "${req.body.username}" and password: "${req.body.password}"`);
+        console.warn(`URGENT: attempted login with username: "${req.body.username}" and password: "${req.body.password}"`);
         console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
         console.log(``);
 
