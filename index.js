@@ -1,6 +1,7 @@
 // import express from "express";
 import { EventEmitterAsyncResource } from "events";
 import express from "express";
+import chalk from 'chalk';
 
 const app = express();
 const port = 1500;
@@ -132,7 +133,7 @@ app.get("/", (req, res) => {
         }
 
     console.log(`Signed out page loaded. (${paswrdPgLoadCount})`);
-    console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
+    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
     console.log(``);
     paswrdPgLoadCount++;
 });
@@ -235,8 +236,8 @@ app.get("/database", (req, res) => {
             var time = "AM";
         }
 
-    console.log(`ALERT: Database page loaded. (${DatabaseLoadCount})`);
-    console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
+    console.log(chalk.yellow.bgRed(`ALERT:`) + chalk.yellow(` Database page loaded. (${DatabaseLoadCount})`));
+    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
     console.log(``);
     DatabaseLoadCount++;
 });
@@ -294,8 +295,8 @@ app.get("/login.ejs", (req, res) => {
             var time = "AM";
         }
 
-    console.log(`Login page loaded. (${LoginLoadCount})`);
-    console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
+    console.log(chalk.green(`Login page loaded. (${LoginLoadCount})`));
+    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
     console.log(``);
     LoginLoadCount++;
 });
@@ -360,17 +361,17 @@ app.post("/login", (req, res) => {
     ) {
         res.redirect("/database");
         console.log(`Successful login with username: "${req.body.username}" and password: "${req.body.password}"`);
-        console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
+        console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
         console.log(``);
     } else if (req.body.username === "rickroll me" && req.body.password === "please") {
         res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         console.log(`User Rickrolled.`);
-        console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
+        console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
         console.log(``);
     } else {
         res.redirect("/login.ejs");
-        console.warn(`URGENT: attempted login with username: "${req.body.username}" and password: "${req.body.password}"`);
-        console.log(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`);
+        console.log(chalk.bgRed.yellow(`URGENT:`) + chalk.red(` attempted login with username: "${req.body.username}" and password: "${req.body.password}"`));
+        console.log(chalk.yellowBright.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
         console.log(``);
 
     }
@@ -437,7 +438,7 @@ app.listen(port, () => {
 
     
     // log server start
-    console.log(`Server running on port ${port}.`);
+    console.log(`Server running on port ` + chalk.green(port) + `.`);
     console.log(``);
 
     // log date and time
