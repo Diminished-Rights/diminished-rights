@@ -3,6 +3,7 @@ import { EventEmitterAsyncResource } from "events";
 import express from "express";
 import chalk from 'chalk';
 
+// setup other variables and what not
 const app = express();
 const port = 1500;
 const portForward = true;
@@ -356,6 +357,7 @@ app.post("/login", (req, res) => {
                 var time = "AM";
             }
 
+// 'for' loop to check if username and password match ones in database
 for (let i = 0; i < usernames.length; i++) {
     console.log(`Checking username and password...` + chalk.dim(`(${i + 1}/${usernames.length})`));
     if (req.body.username == usernames[i] && req.body.password == passwords[i]) {
@@ -365,12 +367,16 @@ for (let i = 0; i < usernames.length; i++) {
         console.log(``);
         return;
     }
-} if (req.body.username == "rickroll me" && req.body.password == "please") {
+}
+
+// check for easter egg
+if (req.body.username == "rickroll me" && req.body.password == "please") {
     res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     console.log(`User  rickrolled successfully.`);
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
     console.log(``);
-} else  {
+} else {
+    // if username and password do not match, redirect to login page
     res.redirect("login.ejs");
     console.log(chalk.bgRed.yellowBright(`ALERT:`) + chalk.yellowBright(` Username ` + chalk.red(req.body.username) + ` and password ` + chalk.red(req.body.password) + ` not found in database.`));
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
