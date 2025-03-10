@@ -17,8 +17,8 @@ let DatabaseLoadCount = 1;
 let LoginLoadCount = 1;
 let testingBoolean = false;
 
-const usernames = ["admin", "Mao Is Great", "Ayden Lim", "Luca Korolev", "Kaidi Hsu"];
-const passwords = ["Prev Loves Me 2", "All Hail Mao", "Mao is Great", "MyPasswordIsNotWeakB3causeItIsSoLong!", "KaidiIsTheBest"];
+const usernames = ["admin", "Mao Is Great", "Ayden Lim", "Luca Korolev", "Kaidi Hsu", "Angus McDonnell", "Arthur Tan", "Caleb Brown", "Connor Borrell", "Matthew Colvin"];
+const passwords = ["Prev Loves Me 2", "All Hail Mao", "Mao is Great", "MyPasswordIsNotWeakB3causeItIsSoLong!", "KaidiIsTheBest", "WhyNotHaveThisPassword", "AllHailTheMightyArthur", "HerebyIDeclareMaoAsGreat", "AllHailGithubCauseWhyNot", "AydenOurGreatLeader"];
 
 // get current date
 let date_time = new Date();
