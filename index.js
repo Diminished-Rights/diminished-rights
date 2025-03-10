@@ -20,61 +20,6 @@ let testingBoolean = false;
 const usernames = ["admin", "Mao Is Great", "Ayden Lim", "Luca Korolev", "Kaidi Hsu", "Angus McDonnell", "Arthur Tan", "Caleb Brown", "Connor Borrell", "Matthew Colvin"];
 const passwords = ["Prev Loves Me 2", "All Hail Mao", "Mao is Great", "MyPasswordIsNotWeakB3causeItIsSoLong!", "KaidiIsTheBest", "WhyNotHaveThisPassword", "AllHailTheMightyArthur", "HerebyIDeclareMaoAsGreat", "AllHailGithubCauseWhyNot", "AydenOurGreatLeader"];
 
-// get current date
-let date_time = new Date();
-
-// adjust 0 before single digit date
-let date = ("0" + date_time.getDate()).slice(-2);
-
-// get current month
-let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-
-// get current year
-let year = date_time.getFullYear();
-
-// get current hours
-let hoursRaw = date_time.getHours();
-if (hoursRaw > 12) {
-    var hours24 = hoursRaw - 12;
-} else {
-    var hours24 = hoursRaw;
-};
-
-if (hours24 < 10) {
-    var hours = "0" + hours24;
-} else {
-    var hours = hours24;
-};
-
-// get current minutes
-let minutesRaw = date_time.getMinutes();
-if (minutesRaw < 10) {
-    var minutes = "0" + minutesRaw;
-} else {
-    var minutes = minutesRaw;
-};
-
-// get current seconds
-let secondsRaw = date_time.getSeconds();
-if (secondsRaw < 10) {
-    var seconds = "0" + secondsRaw;
-} else {
-    var seconds = secondsRaw;
-};
-
-// get AM or PM
-if (hoursRaw > 12) {
-    var time = "PM";
-} else if (hoursRaw == 12) {
-    var time = "PM";
-} else {
-    var time = "AM";
-}
-
-const dateAndTime = `${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`;
-
-
-
 
 // add rendering code
 
@@ -308,6 +253,7 @@ app.get("/login.ejs", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
+    console.time("Loading time");
             // get current date
             let date_time = new Date();
 
@@ -367,6 +313,7 @@ for (let i = 0; i < usernames.length; i++) {
         console.log(`Match found!`);
         console.log(`User ` + chalk.green(req.body.username) + ` logged in successfully.`);
         console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
+        console.timeEnd("Loading time");
         console.log(``);
         return;
     }
@@ -377,12 +324,14 @@ if (req.body.username == "rickroll me" && req.body.password == "please") {
     res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     console.log(`User  rickrolled successfully.`);
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
+    console.timeEnd("Loading time");
     console.log(``);
 } else {
     // if username and password do not match, redirect to login page
     res.redirect("login.ejs");
     console.log(chalk.bgRed.yellowBright(`ALERT:`) + chalk.yellowBright(` Username ` + chalk.red(req.body.username) + ` and password ` + chalk.red(req.body.password) + ` not found in database.`));
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
+    console.timeEnd("Loading time");
     console.log(``);
 }
 
