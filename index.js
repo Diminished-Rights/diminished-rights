@@ -17,8 +17,8 @@ let DatabaseLoadCount = 1;
 let LoginLoadCount = 1;
 let testingBoolean = false;
 
-const usernames = ["admin", "Mao Is Great", "Ayden Lim", "Luca Korolev"];
-const passwords = ["Prev Loves Me 2", "All Hail Mao", "Mao is Great", "MyPasswordIsNotWeakB3causeItIsSoLong!"];
+const usernames = ["admin", "Mao Is Great", "Ayden Lim", "Luca Korolev", "Kaidi Hsu"];
+const passwords = ["Prev Loves Me 2", "All Hail Mao", "Mao is Great", "MyPasswordIsNotWeakB3causeItIsSoLong!", "KaidiIsTheBest"];
 
 // get current date
 let date_time = new Date();
@@ -177,8 +177,8 @@ app.get("/database", (req, res) => {
         neutral: [],
         protesters: ["Roland Liu"],
         enemies: ["Mr Bevan Galbraith", "Aaron Liu", "Mr Timothy Dent"],
-        betrayers: [],
-        targets: ["Alex Kim"],
+        betrayers: ["Alan Lee"],
+        targets: ["Alex Kim", "Jackson Bo"],
         high_threat: ["Connor McCracken"],
 
         // member roles
@@ -186,7 +186,7 @@ app.get("/database", (req, res) => {
         head_of_act: ["Ayden Lim"],
         head_of_intelligence: [],
         head_of_defence: ["Luca Korolev"],
-        head_of_secretery: [],
+        head_of_secretery: ["Kaidi Hsu"],
         award_manager: [],
         web_developer: ["Vishesh Kudva"],
     });
