@@ -175,7 +175,7 @@ app.get("/database", (req, res) => {
         members: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Vishesh Kudva"],
         caution: ["Marcus", "Aaron Liu"],
         neutral: [],
-        protesters: ["Roland Liu"],
+        protesters: ["Roland Liu", "Leni Reid"],
         enemies: ["Mr Bevan Galbraith", "Aaron Liu", "Mr Timothy Dent"],
         betrayers: ["Alan Lee"],
         targets: ["Alex Kim", "Jackson Bo"],
