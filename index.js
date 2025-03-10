@@ -151,6 +151,7 @@ app.get("/database.ejs", (req, res) => {
 });
 
 app.get("/database", (req, res) => {
+    console.time("Loading time");
     res.render("database.ejs", {
 
         // number of each type of member
@@ -242,6 +243,7 @@ app.get("/database", (req, res) => {
 
     console.log(` Database page loaded. (${DatabaseLoadCount})`);
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
+    console.timeEnd("Loading time");
     console.log(``);
     DatabaseLoadCount++;
 });
@@ -371,9 +373,17 @@ for (let i = 0; i < usernames.length; i++) {
         return;
     }
 }
-
-// check for easter egg
-if (req.body.username == "rickroll me" && req.body.password == "please") {
+if (req,body.username == "Mao is Great" && req.body.password == "All Hail Mao") {
+    // check for generic login
+    res.redirect("database.ejs")
+    console.log(`Generic login detected!`);
+    console.log(chalk.yellowBright(`User logged in successfully using generic login.`));
+    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
+    console.timeEnd("Loading time");
+    console.log(``);
+    return;
+} else if (req.body.username == "rickroll me" && req.body.password == "please") {
+    // check for easter egg
     res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     console.log(`User  rickrolled successfully.`);
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
