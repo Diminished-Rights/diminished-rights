@@ -381,10 +381,6 @@ if (req.body.username == "rickroll me" && req.body.password == "please") {
     console.log(``);
 } else {
     // if username and password do not match, redirect to login page
-    if (Math.random() < 0.5) {
-        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-        console.log(`User ` + chalk.red(req.body.username) + ` and password ` + chalk.red(req.body.password) + ` not found in database and was therefore rickrolled.`);
-    }
     res.redirect("login.ejs");
     console.log(chalk.bgRed.yellowBright(`ALERT:`) + chalk.yellowBright(` Username ` + chalk.red(req.body.username) + ` and password ` + chalk.red(req.body.password) + ` not found in database.`));
     console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
