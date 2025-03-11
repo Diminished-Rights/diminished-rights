@@ -17,8 +17,8 @@ let DatabaseLoadCount = 1;
 let LoginLoadCount = 1;
 let testingBoolean = false;
 
-const usernames = ["admin", "Mao Is Great", "Ayden Lim", "Luca Korolev", "Kaidi Hsu", "Angus McDonnell", "Arthur Tan", "Caleb Brown", "Connor Borrell", "Matthew Colvin"];
-const passwords = ["Prev Loves Me 2", "All Hail Mao", "Mao is Great", "MyPasswordIsNotWeakB3causeItIsSoLong!", "KaidiIsTheBest", "WhyNotHaveThisPassword", "AllHailTheMightyArthur", "HerebyIDeclareMaoAsGreat", "AllHailGithubCauseWhyNot", "AydenOurGreatLeader"];
+const usernames = ["admin", "Ayden Lim", "Luca Korolev", "Kaidi Hsu", "Angus McDonnell", "Arthur Tan", "Caleb Brown", "Connor Borrell", "Matthew Colvin"];
+const passwords = ["Prev Loves Me 2", "Mao is Great", "MyPasswordIsNotWeakB3causeItIsSoLong!", "KaidiIsTheBest", "WhyNotHaveThisPassword", "AllHailTheMightyArthur", "HerebyIDeclareMaoAsGreat", "AllHailGithubCauseWhyNot", "AydenOurGreatLeader"];
 
  // get current date
  let date_time = new Date();
@@ -182,12 +182,12 @@ app.get("/database", (req, res) => {
 
         // member roles
         junior_branch_leader: [],
-        head_of_act: ["Ayden Lim"],
+        head_of_act: ["Luca Korolev"],
         head_of_intelligence: [],
-        head_of_defence: ["Luca Korolev"],
+        head_of_defence: ["Ayden Lim"],
         head_of_secretery: ["Kaidi Hsu"],
         award_manager: [],
-        web_developer: ["Vishesh Kudva"],
+        web_developer: ["Vishesh Kudva", "Luca Korolev"],
     });
 
         // get current date
