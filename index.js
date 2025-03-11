@@ -373,7 +373,7 @@ for (let i = 0; i < usernames.length; i++) {
         return;
     }
 }
-if (req,body.username == "Mao is Great" && req.body.password == "All Hail Mao") {
+if (req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") {
     // check for generic login
     res.redirect("database.ejs")
     console.log(`Generic login detected!`);
