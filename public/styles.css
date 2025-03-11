@@ -1,26 +1,29 @@
 td {
     padding-right: 20px;
-};
+}
 
 body {
     font-family: Arial, sans-serif;
-    padding: 15px;
-};
+    padding: 1em;
+    background-color: #efefef;
+    font-family: sans-serif;
+    text-align: center;
+}
 
 #index-ejs {
     text-align: center;
-};
+}
 
 a {
     text-decoration: none;
     color: white;
-};
+}
 
 .red {
     background-color: #6e0000;
     color: white;
-};
+}
 
 #aboutDRS {
     text-align: center;
-};
+}

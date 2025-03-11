@@ -4,6 +4,7 @@ console.time("Loading time");
 import { EventEmitterAsyncResource } from "events";
 import express from "express";
 import chalk from 'chalk';
+import { error } from "console";
 
 // setup other variables and what not
 const app = express();
@@ -17,63 +18,94 @@ let DatabaseLoadCount = 1;
 let LoginLoadCount = 1;
 let testingBoolean = false;
 
-const usernames = ["admin", "Ayden Lim", "Luca Korolev", "Kaidi Hsu", "Angus McDonnell", "Arthur Tan", "Caleb Brown", "Connor Borrell", "Matthew Colvin"];
-const passwords = ["Prev Loves Me 2", "Mao is Great", "MyPasswordIsNotWeakB3causeItIsSoLong!", "KaidiIsTheBest", "WhyNotHaveThisPassword", "AllHailTheMightyArthur", "HerebyIDeclareMaoAsGreat", "AllHailGithubCauseWhyNot", "AydenOurGreatLeader"];
+function getDateAndTime() {
+    // get current date
+    let date_time = new Date();
 
- // get current date
- let date_time = new Date();
+    // adjust 0 before single digit date
+    let date = ("0" + date_time.getDate()).slice(-2);
 
- // adjust 0 before single digit date
- let date = ("0" + date_time.getDate()).slice(-2);
+    // get current month
+    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
 
- // get current month
- let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+    // get current year
+    let year = date_time.getFullYear();
 
- // get current year
- let year = date_time.getFullYear();
+    // get current hours
+    let hoursRaw = date_time.getHours();
+    if (hoursRaw > 12) {
+        var hours24 = hoursRaw - 12;
+    } else {
+        var hours24 = hoursRaw;
+    };
+    
+    if (hours24 < 10) {
+        var hours = "0" + hours24;
+    } else {
+        var hours = hours24;
+    };
 
- // get current hours
- let hoursRaw = date_time.getHours();
- if (hoursRaw > 12) {
-     var hours24 = hoursRaw - 12;
- } else {
-     var hours24 = hoursRaw;
- };
+    // get current minutes
+    let minutesRaw = date_time.getMinutes();
+    if (minutesRaw < 10) {
+        var minutes = "0" + minutesRaw;
+    } else {
+        var minutes = minutesRaw;
+    };
+
+    // get current seconds
+    let secondsRaw = date_time.getSeconds();
+    if (secondsRaw < 10) {
+        var seconds = "0" + secondsRaw;
+    } else {
+        var seconds = secondsRaw;
+    };
+
+    // get AM or PM
+    if (hoursRaw > 12) {
+        var time = "PM";
+    } else if (hoursRaw == 12) {
+        var time = "PM";
+    } else {
+        var time = "AM";
+    }
+
+    const dateAndTime = `${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`;
+
+    return dateAndTime;
+}
+
+function multipleUserHandling() {
+    //add multiple user handling here
+    return 0;
+}
+
+class user {
+    constructor(name, pass) {
+        if (!(new Set(users)).has(name)) {
+            if (multipleUserHandling(name) == 0) { throw new error(`${name} is already an existing user.`) }
+        }
+        else {
+            this.user = name;
+            this.pass = pass;
+        }
+    }
+}
+
+const users = [
+    new user("admin", "Prev Loves Me 2"),
+    new user("Ayden Lim", "Mao is Great"),
+    new user("Luca Korolev", "MyPasswordIsNotWeakB3causeItIsSoLong!"),
+    new user("Kaidi Hsu", "KaidiIsTheBest"),
+    new user("Angus McDonnell", "WhyNotHaveThisPassword"),
+    new user("Arthur Tan", "AllHailTheMightyArthur"),
+    new user("Caleb Brown", "HerebyIDeclareMaoAsGreat"),
+    new user("Connor Borrell", "AllHailGithubCauseWhyNot"),
+    new user("Matthew Colvin", "AydenOurGreatLeader"),
+    
+];
+
  
- if (hours24 < 10) {
-     var hours = "0" + hours24;
- } else {
-     var hours = hours24;
- };
-
- // get current minutes
- let minutesRaw = date_time.getMinutes();
- if (minutesRaw < 10) {
-     var minutes = "0" + minutesRaw;
- } else {
-     var minutes = minutesRaw;
- };
-
- // get current seconds
- let secondsRaw = date_time.getSeconds();
- if (secondsRaw < 10) {
-     var seconds = "0" + secondsRaw;
- } else {
-     var seconds = secondsRaw;
- };
-
- // get AM or PM
- if (hoursRaw > 12) {
-     var time = "PM";
- } else if (hoursRaw == 12) {
-     var time = "PM";
- } else {
-     var time = "AM";
- }
-
- const dateAndTime = `${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`;
-
-
 // add rendering code
 
 app.use(express.static("public"));
@@ -82,62 +114,11 @@ app.get("/", (req, res) => {
     res.render("index.ejs", {
         userNum: paswrdPgLoadCount,
         testing: testingBoolean,
-        terminalDate: dateAndTime,
+        terminalDate: getDateAndTime(),
     });
 
-        // get current date
-        let date_time = new Date();
-
-        // adjust 0 before single digit date
-        let date = ("0" + date_time.getDate()).slice(-2);
-    
-        // get current month
-        let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-    
-        // get current year
-        let year = date_time.getFullYear();
-    
-        // get current hours
-        let hoursRaw = date_time.getHours();
-        if (hoursRaw > 12) {
-            var hours24 = hoursRaw - 12;
-        } else {
-            var hours24 = hoursRaw;
-        };
-        
-        if (hours24 < 10) {
-            var hours = "0" + hours24;
-        } else {
-            var hours = hours24;
-        };
-    
-        // get current minutes
-        let minutesRaw = date_time.getMinutes();
-        if (minutesRaw < 10) {
-            var minutes = "0" + minutesRaw;
-        } else {
-            var minutes = minutesRaw;
-        };
-    
-        // get current seconds
-        let secondsRaw = date_time.getSeconds();
-        if (secondsRaw < 10) {
-            var seconds = "0" + secondsRaw;
-        } else {
-            var seconds = secondsRaw;
-        };
-    
-        // get AM or PM
-        if (hoursRaw > 12) {
-            var time = "PM";
-        } else if (hoursRaw == 12) {
-            var time = "PM";
-        } else {
-            var time = "AM";
-        }
-
     console.log(`Home page loaded. (${paswrdPgLoadCount})`);
-    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
+    console.log(chalk.italic(getDateAndTime()));
     console.log(``);
     paswrdPgLoadCount++;
 });
@@ -190,288 +171,65 @@ app.get("/database", (req, res) => {
         web_developer: ["Vishesh Kudva", "Luca Korolev"],
     });
 
-        // get current date
-        let date_time = new Date();
-
-        // adjust 0 before single digit date
-        let date = ("0" + date_time.getDate()).slice(-2);
-    
-        // get current month
-        let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-    
-        // get current year
-        let year = date_time.getFullYear();
-    
-        // get current hours
-        let hoursRaw = date_time.getHours();
-        if (hoursRaw > 12) {
-            var hours24 = hoursRaw - 12;
-        } else {
-            var hours24 = hoursRaw;
-        };
-        
-        if (hours24 < 10) {
-            var hours = "0" + hours24;
-        } else {
-            var hours = hours24;
-        };
-    
-        // get current minutes
-        let minutesRaw = date_time.getMinutes();
-        if (minutesRaw < 10) {
-            var minutes = "0" + minutesRaw;
-        } else {
-            var minutes = minutesRaw;
-        };
-    
-        // get current seconds
-        let secondsRaw = date_time.getSeconds();
-        if (secondsRaw < 10) {
-            var seconds = "0" + secondsRaw;
-        } else {
-            var seconds = secondsRaw;
-        };
-    
-        // get AM or PM
-        if (hoursRaw > 12) {
-            var time = "PM";
-        } else if (hoursRaw == 12) {
-            var time = "PM";
-        } else {
-            var time = "AM";
-        }
-
-    console.log(` Database page loaded. (${DatabaseLoadCount})`);
-    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
     console.timeEnd("Loading time");
-    console.log(``);
+    log(`Database page loaded. (${DatabaseLoadCount})`);
     DatabaseLoadCount++;
 });
 
 app.get("/login.ejs", (req, res) => {
     res.render("login.ejs");
-        // get current date
-        let date_time = new Date();
-
-        // adjust 0 before single digit date
-        let date = ("0" + date_time.getDate()).slice(-2);
-    
-        // get current month
-        let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-    
-        // get current year
-        let year = date_time.getFullYear();
-    
-        // get current hours
-        let hoursRaw = date_time.getHours();
-        if (hoursRaw > 12) {
-            var hours24 = hoursRaw - 12;
-        } else {
-            var hours24 = hoursRaw;
-        };
-        
-        if (hours24 < 10) {
-            var hours = "0" + hours24;
-        } else {
-            var hours = hours24;
-        };
-    
-        // get current minutes
-        let minutesRaw = date_time.getMinutes();
-        if (minutesRaw < 10) {
-            var minutes = "0" + minutesRaw;
-        } else {
-            var minutes = minutesRaw;
-        };
-    
-        // get current seconds
-        let secondsRaw = date_time.getSeconds();
-        if (secondsRaw < 10) {
-            var seconds = "0" + secondsRaw;
-        } else {
-            var seconds = secondsRaw;
-        };
-    
-        // get AM or PM
-        if (hoursRaw > 12) {
-            var time = "PM";
-        } else if (hoursRaw == 12) {
-            var time = "PM";
-        } else {
-            var time = "AM";
-        }
-
-    console.log(`Login page loaded. (${LoginLoadCount})`);
-    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
-    console.log(``);
+    log(`Login page loaded. (${LoginLoadCount})`);
     LoginLoadCount++;
 });
 
 app.post("/login", (req, res) => {
     console.time("Loading time");
-            // get current date
-            let date_time = new Date();
-
-            // adjust 0 before single digit date
-            let date = ("0" + date_time.getDate()).slice(-2);
-            
-            // get current month
-            let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-            
-            // get current year
-            let year = date_time.getFullYear();
-            
-            // get current hours
-            let hoursRaw = date_time.getHours();
-            if (hoursRaw > 12) {
-                var hours24 = hoursRaw - 12;
-            } else {
-                var hours24 = hoursRaw;
-            };
-            
-            if (hours24 < 10) {
-                var hours = "0" + hours24;
-            } else {
-                var hours = hours24;
-            };
-            
-            // get current minutes
-            let minutesRaw = date_time.getMinutes();
-            if (minutesRaw < 10) {
-                var minutes = "0" + minutesRaw;
-            } else {
-                var minutes = minutesRaw;
-            };
-            
-            // get current seconds
-            let secondsRaw = date_time.getSeconds();
-            if (secondsRaw < 10) {
-                var seconds = "0" + secondsRaw;
-            } else {
-                var seconds = secondsRaw;
-            };
-
-            // get AM or PM
-            if (hoursRaw > 12) {
-                var time = "PM";
-            } else if (hoursRaw == 12) {
-                var time = "PM";
-            } else {
-                var time = "AM";
-            }
-
-// 'for' loop to check if username and password match ones in database
-for (let i = 0; i < usernames.length; i++) {
-    console.log(`Checking username and password... ` + chalk.dim(`(${i + 1}/${usernames.length})`));
-    if (req.body.username == usernames[i] && req.body.password == passwords[i]) {
+    if (req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") {
+        // check for generic login
         res.redirect("database.ejs")
-        console.log(`Match found!`);
-        console.log(`User ` + chalk.green(req.body.username) + ` logged in successfully.`);
-        console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
+        console.log(`Generic login detected!`);
+        console.log(chalk.yellowBright(`User logged in successfully using generic login.`));
+        console.log(chalk.italic(getDateAndTime()));
+        console.timeEnd("Loading time");
+        console.log(``);
+        return;
+    } else if (req.body.username == "rickroll me" && req.body.password == "please") {
+        // check for easter egg
+        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        console.log(`User  rickrolled successfully.`);
+        console.log(chalk.italic(getDateAndTime()));
         console.timeEnd("Loading time");
         console.log(``);
         return;
     }
-}
-if (req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") {
-    // check for generic login
-    res.redirect("database.ejs")
-    console.log(`Generic login detected!`);
-    console.log(chalk.yellowBright(`User logged in successfully using generic login.`));
-    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
-    console.timeEnd("Loading time");
-    console.log(``);
-    return;
-} else if (req.body.username == "rickroll me" && req.body.password == "please") {
-    // check for easter egg
-    res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-    console.log(`User  rickrolled successfully.`);
-    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
-    console.timeEnd("Loading time");
-    console.log(``);
-} else {
-    // if username and password do not match, redirect to login page
-    res.redirect("login.ejs");
-    console.log(chalk.bgRed.yellowBright(`ALERT:`) + chalk.yellowBright(` Username ` + chalk.red(req.body.username) + ` and password ` + chalk.red(req.body.password) + ` not found in database.`));
-    console.log(chalk.italic(`${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`));
-    console.timeEnd("Loading time");
-    console.log(``);
-}
-
+    users.forEach((_user, index) => {
+        console.log(`Checking username and password... ` + chalk.dim(`(${index}/${_user.user}/)`));
+        if (req.body.username == _user.user && req.body.password == _user.pass) {
+            res.redirect("database.ejs")
+            
+            console.timeEnd("Loading time");
+            console.log(getDateAndTime());
+            console.log(`User: ${chalk.green(_user.user)} successfully logged in!`);
+            console.log(``);
+            return;
+        }
+    });
 });
 
 // listen to port
 app.listen(port, () => {
-
-    // show date and time of program start
-    console.timeEnd("Loading time");
-    console.log(``);
-
-    // get current date
-    let date_time = new Date();
-
-    // adjust 0 before single digit date
-    let date = ("0" + date_time.getDate()).slice(-2);
-
-    // get current month
-    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-
-    // get current year
-    let year = date_time.getFullYear();
-
-    // get current hours
-    let hoursRaw = date_time.getHours();
-    if (hoursRaw > 12) {
-        var hours24 = hoursRaw - 12;
-    } else {
-        var hours24 = hoursRaw;
-    };
-    
-    if (hours24 < 10) {
-        var hours = "0" + hours24;
-    } else {
-        var hours = hours24;
-    };
-
-    // get current minutes
-    let minutesRaw = date_time.getMinutes();
-    if (minutesRaw < 10) {
-        var minutes = "0" + minutesRaw;
-    } else {
-        var minutes = minutesRaw;
-    };
-
-    // get current seconds
-    let secondsRaw = date_time.getSeconds();
-    if (secondsRaw < 10) {
-        var seconds = "0" + secondsRaw;
-    } else {
-        var seconds = secondsRaw;
-    };
-
-    // get AM or PM
-    if (hoursRaw > 12) {
-        var time = "PM";
-    } else if (hoursRaw == 12) {
-        var time = "PM";
-    } else {
-        var time = "AM";
-    }
-
-    
     // log server start
     console.log(`Server running on port ` + chalk.green(port) + `.`);
     console.log(``);
 
     // log date and time
-    console.log(`Date of start: ${date}-${month}-${year}`);
-    console.log(`Time of start: ${hours}:${minutes}:${seconds} ${time}`);
+    console.log(`Time of start: ${getDateAndTime()}`);
     console.log(``);
 
     // log website info
     console.log(`Go to ` + chalk.dim(`http://localhost:${port}`) + ` to view the website.`);
     if (portForward) {
-        console.log(`Go to ` + chalk.dim(`https://p9npwlmh-${port}.aue.devtunnels.ms/`) +` to view the website.`);
+        console.log(`Go to ${chalk.dim(`https://p9npwlmh-${port}.aue.devtunnels.ms/`)} to view the website.`);
     };
     console.log(``);
 
