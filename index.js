@@ -9,7 +9,6 @@ import chalk from 'chalk';
 const app = express();
 const port = 1500;
 const portForward = true;
-const requestIp = require('request-ip');
 
 app.use(express.urlencoded({ extended: true })); // Add this line to parse URL-encoded bodies
 
