@@ -28,7 +28,7 @@ const users = [
     new user("Angus McDonnell", "WhyNotHaveThisPassword"),
     new user("Arthur Tan", "AllHailTheMightyArthur"),
     new user("Caleb Brown", "HerebyIDeclareMaoAsGreat"),
-    new user("Connor Borrell", "AllHailGithubCauseWhyNot"),
+    new user("Connor Borrell", "password"),
     new user("Matthew Colvin", "AydenOurGreatLeader"),
 ];
 
