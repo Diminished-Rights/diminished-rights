@@ -2,6 +2,7 @@ import { app, users, getDateAndTime, DatabaseLoadCount } from './appConfig.js';
 import chalk from 'chalk';
 
 let DBLC = DatabaseLoadCount;
+let loadAuth = null;
 
 app.get("/database.ejs", (req, res) => {
     res.redirect("/database");
@@ -37,8 +38,16 @@ app.get("/database", (req, res) => {
 
             console.log(`Database page loaded by the user: ${chalk.green(_user.user)}. (${DBLC})`);
             console.timeEnd("Time loading");
+            loadAuth = true;
             DBLC++;
             return;
         }
     });
+
+    if (!loadAuth) {
+        res.render("Forbidden.ejs");
+        console.log(`${chalk.bgRed.yellowBright(`ALERT:`)}${chalk.yellowBright(`A user attempted to login, but neccesary cookies were not detected.`)}`);
+        console.timeEnd("Time loading");
+        console.log(``);
+    };
 });
