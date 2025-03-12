@@ -157,7 +157,7 @@ app.get("/database", (req, res) => {
         head_of_defence: ["Ayden Lim"],
         head_of_secretery: ["Kaidi Hsu"],
         award_manager: [],
-        web_developer: ["Vishesh Kudva", "Luca Korolev"],
+        web_developer: ["Vishesh Kudva", "Luca Korolev", "Connor Borrell"],
     });
 
     console.timeEnd("Loading time");
