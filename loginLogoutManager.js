@@ -1,14 +1,18 @@
-import './index.js'
+import { app, users, getDateAndTime, login, LoginLoadCount } from './appConfig.js';
+import chalk from 'chalk';
+
+let LLC = LoginLoadCount;
+let logon = login;
 
 app.get("/login.ejs", (req, res) => {
     res.render("login.ejs");
-    console.log(`Login page loaded. (${LoginLoadCount})`);
-    LoginLoadCount++;
+    console.log(`Login page loaded. (${LLC})`);
+    LLC++;
 });
 
 app.post("/login", (req, res) => {
     console.time("Loading time");
-    login = false;
+    logon = false;
     if (req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") {
         // check for generic login
         console.log(`Generic login detected!`);
@@ -23,7 +27,7 @@ app.post("/login", (req, res) => {
     } else if (req.body.username == "rickroll me" && req.body.password == "please") {
         // check for easter egg
         res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-        console.log(`User  rickrolled successfully.`);
+        console.log(`User rickrolled successfully.`);
         console.log(chalk.italic(getDateAndTime()));
         console.timeEnd("Loading time");
         console.log(``);
@@ -31,7 +35,7 @@ app.post("/login", (req, res) => {
     }
 
     users.forEach((_user, index) => {
-        if (!login) {
+        if (!logon) {
             console.log(`Checking username and password... ` + chalk.dim(`(${_user.user})`));
             if (req.body.username == _user.user && req.body.password == _user.pass) {
                 console.log(`User: ${chalk.green(_user.user)} successfully logged in!`);
@@ -40,7 +44,7 @@ app.post("/login", (req, res) => {
                 console.timeEnd("Loading time");
                 console.log(``);
                 res.redirect("/database");
-                login = true;
+                logon = true;
             }
         }
     });
@@ -53,4 +57,4 @@ app.post("/LogoutFunc", (req, res) => {
     console.log(chalk.italic(getDateAndTime()));
     res.redirect("/")
     console.log(``)
-})
+});

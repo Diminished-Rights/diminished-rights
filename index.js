@@ -1,83 +1,17 @@
 console.time("Loading time");
 
-// import express from "express";
-import express from "express";
+import { app, port, portForward, paswrdPgLoadCount, getDateAndTime, express } from './appConfig.js';
 import chalk from 'chalk';
 import cookieParser from 'cookie-parser';
-import { error } from "console";
-import './loginLogoutManager.js';
-import './databaseManager.js';
-
-// setup other variables and what not
-const app = express();
-const port = 1500;
-const portForward = true;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-let paswrdPgLoadCount = 1;
+let PPLC = paswrdPgLoadCount;
 let DatabaseLoadCount = 1;
 let LoginLoadCount = 1;
 let testingBoolean = false;
 let login = false;
-
-function getDateAndTime() {
-    // get current date
-    let date_time = new Date();
-
-    // adjust 0 before single digit date
-    let date = ("0" + date_time.getDate()).slice(-2);
-
-    // get current month
-    let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
-
-    // get current year
-    let year = date_time.getFullYear();
-
-    // get current hours
-    let hoursRaw = date_time.getHours();
-    if (hoursRaw > 12) {
-        var hours24 = hoursRaw - 12;
-    } else {
-        var hours24 = hoursRaw;
-    };
-    
-    if (hours24 < 10) {
-        var hours = "0" + hours24;
-    } else {
-        var hours = hours24;
-    };
-
-    // get current minutes
-    let minutesRaw = date_time.getMinutes();
-    if (minutesRaw < 10) {
-        var minutes = "0" + minutesRaw;
-    } else {
-        var minutes = minutesRaw;
-    };
-
-    // get current seconds
-    let secondsRaw = date_time.getSeconds();
-    if (secondsRaw < 10) {
-        var seconds = "0" + secondsRaw;
-    } else {
-        var seconds = secondsRaw;
-    };
-
-    // get AM or PM
-    if (hoursRaw > 12) {
-        var time = "PM";
-    } else if (hoursRaw == 12) {
-        var time = "PM";
-    } else {
-        var time = "AM";
-    }
-
-    const dateAndTime = `${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`;
-
-    return dateAndTime;
-}
 
 class user {
     constructor(name, pass) {
@@ -96,25 +30,21 @@ const users = [
     new user("Caleb Brown", "HerebyIDeclareMaoAsGreat"),
     new user("Connor Borrell", "AllHailGithubCauseWhyNot"),
     new user("Matthew Colvin", "AydenOurGreatLeader"),
-    
 ];
-
- 
-// add rendering code
 
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
     res.render("index.ejs", {
-        userNum: paswrdPgLoadCount,
+        userNum: PPLC,
         testing: testingBoolean,
         terminalDate: getDateAndTime(),
     });
 
-    console.log(`Home page loaded. (${paswrdPgLoadCount})`);
+    console.log(`Home page loaded. (${PPLC})`);
     console.log(chalk.italic(getDateAndTime()));
     console.log(``);
-    paswrdPgLoadCount++;
+    PPLC++;
 });
 
 app.get("/index.ejs", (req, res) => {
@@ -147,4 +77,9 @@ app.listen(port, () => {
     console.log(`The page loadings will be logged underneath.`)
     console.log(``);
     console.log(``);
-})
+});
+
+import './loginLogoutManager.js';
+import './databaseManager.js';
+
+export { app, users, getDateAndTime, login, LoginLoadCount, DatabaseLoadCount };
