@@ -13,37 +13,6 @@ app.get("/login.ejs", (req, res) => {
 app.post("/login", (req, res) => {
     console.time("Loading time");
     logon = false;
-    if (req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") {
-        // check for generic login
-        console.log(`Generic login detected!`);
-        console.log(chalk.yellowBright(`User logged in successfully using generic login.`));
-        res.cookie('username', req.body.username);
-        console.log(`Cookie set!`);
-        console.log(chalk.italic(getDateAndTime()));
-        console.timeEnd("Loading time");
-        console.log(``);
-        res.redirect("database.ejs")
-        return;
-    } else if (req.body.username == "rickroll me" && req.body.password == "please") {
-        // check for easter egg
-        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-        console.log(`User rickrolled successfully.`);
-        console.log(chalk.italic(getDateAndTime()));
-        console.timeEnd("Loading time");
-        console.log(``);
-        return;
-    } else if (req.body.username == "Jackson Bo" /* Any password works here */) {
-        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-        console.log(`Jackson was rickrolled successfully.`);
-        console.log(chalk.italic(getDateAndTime()));
-        console.timeEnd("Loading time");
-        console.log(``);
-        return;
-    } else {
-        res.redirect("/")
-        console.log(chalk.bgRed.yellowBright("ALERT:") + chalk.yellow(` Attempted login with username "${req.body.username}" and password "${req.body.password}".`))
-    }
-
     users.forEach((_user, index) => {
         if (!logon) {
             console.log(`Checking username and password... ` + chalk.dim(`(${_user.user})`));
@@ -58,6 +27,36 @@ app.post("/login", (req, res) => {
             }
         }
     });
+    if ((req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") && !logon) {
+        // check for generic login
+        console.log(`Generic login detected!`);
+        console.log(chalk.yellowBright(`User logged in successfully using generic login.`));
+        res.cookie('username', req.body.username);
+        console.log(`Cookie set!`);
+        console.log(chalk.italic(getDateAndTime()));
+        console.timeEnd("Loading time");
+        console.log(``);
+        res.redirect("database.ejs")
+        return;
+    } else if ((req.body.username == "rickroll me" && req.body.password == "please") && !logon) {
+        // check for easter egg
+        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        console.log(`User rickrolled successfully.`);
+        console.log(chalk.italic(getDateAndTime()));
+        console.timeEnd("Loading time");
+        console.log(``);
+        return;
+    } else if ((req.body.username == "Jackson Bo" /* Any password works here */) && !logon) {
+        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        console.log(`Jackson was rickrolled successfully.`);
+        console.log(chalk.italic(getDateAndTime()));
+        console.timeEnd("Loading time");
+        console.log(``);
+        return;
+    } else if (!logon){
+        res.redirect("/")
+        console.log(chalk.bgRed.yellowBright("ALERT:") + chalk.yellow(` Attempted login with username "${req.body.username}" and password "${req.body.password}".`))
+    }
 });
 
 app.post("/LogoutFunc", (req, res) => {

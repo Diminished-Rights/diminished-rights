@@ -9,6 +9,7 @@ app.get("/database.ejs", (req, res) => {
 });
 
 app.get("/database", (req, res) => {
+    loadAuth = null;
     console.time("Time loading");
     users.forEach((_user, index) => {
         if (req.cookies.username == _user.user) {
