@@ -1,7 +1,6 @@
 console.time("Loading time");
 
 // import express from "express";
-import { EventEmitterAsyncResource } from "events";
 import express from "express";
 import chalk from 'chalk';
 import { error } from "console";
@@ -75,20 +74,10 @@ function getDateAndTime() {
     return dateAndTime;
 }
 
-function multipleUserHandling() {
-    //add multiple user handling here
-    return 0;
-}
-
 class user {
     constructor(name, pass) {
-        if (!(new Set(users)).has(name)) {
-            if (multipleUserHandling(name) == 0) { throw new error(`${name} is already an existing user.`) }
-        }
-        else {
-            this.user = name;
-            this.pass = pass;
-        }
+        this.user = name;
+        this.pass = pass;
     }
 }
 
