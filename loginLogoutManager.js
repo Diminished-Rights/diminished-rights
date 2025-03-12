@@ -32,6 +32,13 @@ app.post("/login", (req, res) => {
         console.timeEnd("Loading time");
         console.log(``);
         return;
+    } else if (req.body.username == "Jackson Bo" /* Any password works here */) {
+        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        console.log(`Jackson was rickrolled successfully.`);
+        console.log(chalk.italic(getDateAndTime()));
+        console.timeEnd("Loading time");
+        console.log(``);
+        return;
     }
 
     users.forEach((_user, index) => {
