@@ -3,6 +3,7 @@ console.time("Loading time");
 // import express from "express";
 import express from "express";
 import chalk from 'chalk';
+import cookieParser from 'cookie-parser';
 import { error } from "console";
 
 // setup other variables and what not
@@ -10,7 +11,8 @@ const app = express();
 const port = 1500;
 const portForward = true;
 
-app.use(express.urlencoded({ extended: true })); // Add this line to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 let paswrdPgLoadCount = 1;
 let DatabaseLoadCount = 1;
@@ -122,7 +124,10 @@ app.get("/database.ejs", (req, res) => {
 
 app.get("/database", (req, res) => {
     console.time("Loading time");
-    res.render("database.ejs", {
+    users.forEach((_user, index) => {
+        console.log(`Checking for cookie... ${chalk.dim(_user)}`);
+        if (req.cookies.username == _user.user) {
+        res.render("database.ejs", {
 
         // number of each type of member
         chairman_: true,
@@ -158,11 +163,15 @@ app.get("/database", (req, res) => {
         head_of_secretery: ["Kaidi Hsu"],
         award_manager: [],
         web_developer: ["Vishesh Kudva", "Luca Korolev", "Connor Borrell"],
-    });
+        });
 
-    console.timeEnd("Loading time");
-    console.log(`Database page loaded. (${DatabaseLoadCount})`);
-    DatabaseLoadCount++;
+        console.log(`Database page loaded by user ${_user}. (${DatabaseLoadCount})`);
+        console.timeEnd("Loading time");
+        DatabaseLoadCount++;
+        return;
+        
+        };
+    });
 });
 
 app.get("/login.ejs", (req, res) => {
@@ -175,12 +184,14 @@ app.post("/login", (req, res) => {
     console.time("Loading time");
     if (req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") {
         // check for generic login
-        res.redirect("database.ejs")
         console.log(`Generic login detected!`);
         console.log(chalk.yellowBright(`User logged in successfully using generic login.`));
+        res.cookie('username', req.body.username);
+        console.log(`Cookie set!`);
         console.log(chalk.italic(getDateAndTime()));
         console.timeEnd("Loading time");
         console.log(``);
+        res.redirect("database.ejs")
         return;
     } else if (req.body.username == "rickroll me" && req.body.password == "please") {
         // check for easter egg
@@ -194,12 +205,13 @@ app.post("/login", (req, res) => {
     users.forEach((_user, index) => {
         console.log(`Checking username and password... ` + chalk.dim(`(${_user.user})`));
         if (req.body.username == _user.user && req.body.password == _user.pass) {
-            res.redirect("database.ejs")
-            
-            console.timeEnd("Loading time");
-            console.log(getDateAndTime());
             console.log(`User: ${chalk.green(_user.user)} successfully logged in!`);
+            res.cookie(`username`, req.body.username);
+            console.log(`Cookie set!`)
+            console.log(chalk.italic(getDateAndTime()));
+            console.timeEnd("Loading time");
             console.log(``);
+            res.redirect("database.ejs")
             return;
         }
     });
