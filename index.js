@@ -18,6 +18,7 @@ let paswrdPgLoadCount = 1;
 let DatabaseLoadCount = 1;
 let LoginLoadCount = 1;
 let testingBoolean = false;
+let login = false;
 
 function getDateAndTime() {
     // get current date
@@ -182,6 +183,7 @@ app.get("/login.ejs", (req, res) => {
 
 app.post("/login", (req, res) => {
     console.time("Loading time");
+    login = false;
     if (req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") {
         // check for generic login
         console.log(`Generic login detected!`);
@@ -202,17 +204,19 @@ app.post("/login", (req, res) => {
         console.log(``);
         return;
     }
+
     users.forEach((_user, index) => {
         console.log(`Checking username and password... ` + chalk.dim(`(${_user.user})`));
-        if (req.body.username == _user.user && req.body.password == _user.pass) {
-            console.log(`User: ${chalk.green(_user.user)} successfully logged in!`);
-            res.cookie(`username`, req.body.username);
-            console.log(`Cookie set!`)
-            console.timeEnd("Loading time");
-            console.log(``);
-            res.redirect("database.ejs")
-            return;
-        }
+        if (!login) {
+            if (req.body.username == _user.user && req.body.password == _user.pass) {
+                console.log(`User: ${chalk.green(_user.user)} successfully logged in!`);
+                res.cookie(`username`, req.body.username);
+                console.log(`Cookie set!`);
+                console.timeEnd("Loading time");
+                console.log(``);
+                res.redirect("database.ejs");
+                login = true;
+        }};
     });
 });
 
