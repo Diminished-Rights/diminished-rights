@@ -124,9 +124,8 @@ app.get("/database.ejs", (req, res) => {
 });
 
 app.get("/database", (req, res) => {
-    console.time("Loading time");
+    console.time("Time loading");
     users.forEach((_user, index) => {
-        console.log(`Checking for cookie... ${chalk.dim(_user)}`);
         if (req.cookies.username == _user.user) {
         res.render("database.ejs", {
 
@@ -166,8 +165,8 @@ app.get("/database", (req, res) => {
         web_developer: ["Vishesh Kudva", "Luca Korolev", "Connor Borrell"],
         });
 
-        console.log(`Database page loaded by user ${_user}. (${DatabaseLoadCount})`);
-        console.timeEnd("Loading time");
+        console.log(`Database page loaded by the user: ${chalk.green(_user.user)}. (${DatabaseLoadCount})`);
+        console.timeEnd("Time loading");
         DatabaseLoadCount++;
         return;
 
@@ -206,26 +205,28 @@ app.post("/login", (req, res) => {
     }
 
     users.forEach((_user, index) => {
-        console.log(`Checking username and password... ` + chalk.dim(`(${_user.user})`));
         if (!login) {
+            console.log(`Checking username and password... ` + chalk.dim(`(${_user.user})`));
             if (req.body.username == _user.user && req.body.password == _user.pass) {
                 console.log(`User: ${chalk.green(_user.user)} successfully logged in!`);
                 res.cookie(`username`, req.body.username);
                 console.log(`Cookie set!`);
                 console.timeEnd("Loading time");
                 console.log(``);
-                res.redirect("database.ejs");
+                res.redirect("/database");
                 login = true;
-        }};
+            }
+        }
     });
 });
 
 app.post("/LogoutFunc", (req, res) => {
-    console.log(`User ${req.cookies.username} logging out. Clearing cookies...`)
-    res.clearCookie(username);
+    console.log(`User ${chalk.green(req.cookies.username)} logging out. Clearing cookies...`)
+    res.clearCookie('username');
     console.log(`Cookies cleared.`)
     console.log(chalk.italic(getDateAndTime()));
     res.redirect("/")
+    console.log(``)
 })
 
 // listen to port
