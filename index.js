@@ -161,13 +161,13 @@ app.get("/database", (req, res) => {
     });
 
     console.timeEnd("Loading time");
-    log(`Database page loaded. (${DatabaseLoadCount})`);
+    console.log(`Database page loaded. (${DatabaseLoadCount})`);
     DatabaseLoadCount++;
 });
 
 app.get("/login.ejs", (req, res) => {
     res.render("login.ejs");
-    log(`Login page loaded. (${LoginLoadCount})`);
+    console.log(`Login page loaded. (${LoginLoadCount})`);
     LoginLoadCount++;
 });
 
@@ -192,7 +192,7 @@ app.post("/login", (req, res) => {
         return;
     }
     users.forEach((_user, index) => {
-        console.log(`Checking username and password... ` + chalk.dim(`(${index}/${_user.user}/)`));
+        console.log(`Checking username and password... ` + chalk.dim(`(${_user.user})`));
         if (req.body.username == _user.user && req.body.password == _user.pass) {
             res.redirect("database.ejs")
             
