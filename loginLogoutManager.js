@@ -39,6 +39,9 @@ app.post("/login", (req, res) => {
         console.timeEnd("Loading time");
         console.log(``);
         return;
+    } else {
+        res.redirect("/")
+        console.log(chalk.bgRed.yellowBright("ALERT:") + chalk.yellow(` Attempted login with username "${req.body.username}" and password "${req.body.password}".`))
     }
 
     users.forEach((_user, index) => {
