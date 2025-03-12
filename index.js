@@ -169,7 +169,7 @@ app.get("/database", (req, res) => {
         console.timeEnd("Loading time");
         DatabaseLoadCount++;
         return;
-        
+
         };
     });
 });
@@ -208,7 +208,6 @@ app.post("/login", (req, res) => {
             console.log(`User: ${chalk.green(_user.user)} successfully logged in!`);
             res.cookie(`username`, req.body.username);
             console.log(`Cookie set!`)
-            console.log(chalk.italic(getDateAndTime()));
             console.timeEnd("Loading time");
             console.log(``);
             res.redirect("database.ejs")
@@ -216,6 +215,14 @@ app.post("/login", (req, res) => {
         }
     });
 });
+
+app.post("/LogoutFunc", (req, res) => {
+    console.log(`User ${req.cookies.username} logging out. Clearing cookies...`)
+    res.clearCookie(username);
+    console.log(`Cookies cleared.`)
+    console.log(chalk.italic(getDateAndTime()));
+    res.redirect("/")
+})
 
 // listen to port
 app.listen(port, () => {
