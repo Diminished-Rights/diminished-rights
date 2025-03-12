@@ -129,19 +129,6 @@ app.get("/database", (req, res) => {
         if (req.cookies.username == _user.user) {
         res.render("database.ejs", {
 
-        // number of each type of member
-        chairman_: true,
-        high_council_: true,
-        honoured_member_: false,
-        member_: true,
-        caution_: true,
-        neutral_: false,
-        protester_: false,
-        enemy_: true,
-        betrayer_: false,
-        target_: false,
-        high_threat_: true,
-
         // member hierarchy
         chairman: ["Ayden Lim"],
         high_council: ["Luca Korolev", "Kaidi Hsu"],
