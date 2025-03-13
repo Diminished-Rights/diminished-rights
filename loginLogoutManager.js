@@ -35,6 +35,7 @@ app.post("/login", (req, res) => {
         // check for generic login
         console.log(`Generic login detected!`);
         console.log(chalk.yellowBright(`User attempted to login using generic login, and will be redirected to the "403: Forbidden" page.`));
+        res.cookie(`username`, `generic`);
         console.log(chalk.italic(getDateAndTime()));
         console.timeEnd("Loading time");
         console.log(``);

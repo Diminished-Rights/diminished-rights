@@ -47,7 +47,14 @@ app.get("/database", (req, res) => {
             loadAuth = true;
             DBLC++;
             return;
-        }
+        } else if (req.cookies.username == `generic`) {
+            res.render("Forbidden.ejs", {
+                generic: true,
+            });
+            console.log(chalk.yellow(`User redirected to "403: Forbidden" page due to generic login.`));
+            console.timeEnd("Time loading");
+            console.log(``)
+        };
     });
 
     // If the user is not authorised with cookies
