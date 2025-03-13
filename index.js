@@ -68,6 +68,3 @@ app.listen(port, () => {
 // Imports files for export
 import './loginLogoutManager.js';
 import './databaseManager.js';
-
-// Exports files
-export { app, users, getDateAndTime, login, LoginLoadCount, DatabaseLoadCount };
