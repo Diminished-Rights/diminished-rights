@@ -1,13 +1,17 @@
+// Imports required data as well as Chalk
 import { app, users, getDateAndTime, DatabaseLoadCount } from './appConfig.js';
 import chalk from 'chalk';
 
+// Replaces constants with variables
 let DBLC = DatabaseLoadCount;
 let loadAuth = null;
 
+// Redirect to "/database"
 app.get("/database.ejs", (req, res) => {
     res.redirect("/database");
 });
 
+// Renders "/database"
 app.get("/database", (req, res) => {
     loadAuth = null;
     console.time("Time loading");
@@ -46,6 +50,7 @@ app.get("/database", (req, res) => {
         }
     });
 
+    // If the user is not authorised with cookies
     if (!loadAuth) {
         res.render("Forbidden.ejs");
         console.log(`${chalk.bgRed.yellowBright(`ALERT:`)}${chalk.yellowBright(`A user attempted to login, but neccesary cookies were not detected.`)}`);

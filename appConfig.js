@@ -1,19 +1,24 @@
+// Import express and cookie-parser 
 import express from "express";
 import cookieParser from 'cookie-parser';
 
+// Setup constants
 const app = express();
 const port = 1500;
 const portForward = true;
 
+// Quick use of express functions
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// Set up variables
 let paswrdPgLoadCount = 1;
 let DatabaseLoadCount = 1;
 let LoginLoadCount = 1;
 let testingBoolean = false;
 let login = false;
 
+// Define the function "getDateAndTime()"
 function getDateAndTime() {
     // get current date
     let date_time = new Date();
@@ -71,6 +76,7 @@ function getDateAndTime() {
     return dateAndTime;
 }
 
+// Setup users
 class user {
     constructor(name, pass) {
         this.user = name;
@@ -78,6 +84,7 @@ class user {
     }
 }
 
+// Add users
 const users = [
     new user("admin", "Prev Loves Me 2"),
     new user("Ayden Lim", "Mao is Great"),
@@ -86,8 +93,9 @@ const users = [
     new user("Angus McDonnell", "WhyNotHaveThisPassword"),
     new user("Arthur Tan", "AllHailTheMightyArthur"),
     new user("Caleb Brown", "HerebyIDeclareMaoAsGreat"),
-    new user("Connor Borrell", "AllHailGithubCauseWhyNot"),
+    new user("Connor Borrell", "password"),
     new user("Matthew Colvin", "AydenOurGreatLeader"),
 ];
 
+// Export neccecary data
 export { app, port, portForward, paswrdPgLoadCount, DatabaseLoadCount, LoginLoadCount, testingBoolean, login, getDateAndTime, users, express };

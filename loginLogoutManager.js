@@ -1,15 +1,19 @@
+// Imports required data
 import { app, users, getDateAndTime, login, LoginLoadCount } from './appConfig.js';
 import chalk from 'chalk';
 
+// Replaces constants with variables
 let LLC = LoginLoadCount;
 let logon = login;
 
+// Renders "/login.js"
 app.get("/login.ejs", (req, res) => {
     res.render("login.ejs");
     console.log(`Login page loaded. (${LLC})`);
     LLC++;
 });
 
+// Handles the "/login" request
 app.post("/login", (req, res) => {
     console.time("Loading time");
     logon = false;
@@ -59,6 +63,7 @@ app.post("/login", (req, res) => {
     }
 });
 
+// Handles the "/LogoutFunc" request
 app.post("/LogoutFunc", (req, res) => {
     console.log(`User ${chalk.green(req.cookies.username)} logging out. Clearing cookies...`)
     res.clearCookie('username');
