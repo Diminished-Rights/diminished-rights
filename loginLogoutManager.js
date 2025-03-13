@@ -34,9 +34,7 @@ app.post("/login", (req, res) => {
     if ((req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") && !logon) {
         // check for generic login
         console.log(`Generic login detected!`);
-        console.log(chalk.yellowBright(`User logged in successfully using generic login.`));
-        res.cookie('username', req.body.username);
-        console.log(`Cookie set!`);
+        console.log(chalk.yellowBright(`User attempted to login using generic login, and will be redirected to the "403: Forbidden" page.`));
         console.log(chalk.italic(getDateAndTime()));
         console.timeEnd("Loading time");
         console.log(``);
