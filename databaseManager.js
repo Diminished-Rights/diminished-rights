@@ -49,11 +49,12 @@ app.get("/database", (req, res) => {
             return;
         } else if (req.cookies.username == `generic`) {
             res.render("Forbidden.ejs", {
-                generic: true,
+                generic: `no`,
             });
             console.log(chalk.yellow(`User redirected to "403: Forbidden" page due to generic login.`));
             console.timeEnd("Time loading");
             console.log(``)
+            loadAuth = true;
         };
     });
 

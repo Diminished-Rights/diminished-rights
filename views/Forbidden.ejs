@@ -9,6 +9,7 @@
     <title>403: Forbidden</title>
 </head>
 <body>
+    <% let Generic = generic; %>
     <br>
     <p style="
         font-family: 'Fira Code', monospace;
@@ -17,7 +18,7 @@
         font-style: normal;
         text-align: center;
     ">403: Forbidden</p>
-    <% if (generic) { %>
+    <% if (Generic == `no`) { %>
         <p style="
             font-family: 'Fira Code', monospace;
             font-optical-sizing: auto;
