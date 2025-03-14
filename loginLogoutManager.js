@@ -1,10 +1,11 @@
 // Imports required data
-import { app, users, getDateAndTime, login, LoginLoadCount } from './appConfig.js';
+import { app, users, getDateAndTime, login, LoginLoadCount, prankUserName } from './appConfig.js';
 import chalk from 'chalk';
 
 // Replaces constants with variables
 let LLC = LoginLoadCount;
 let logon = login;
+let prankUser_username = prankUserName;
 
 // Renders "/login.js"
 app.get("/login.ejs", (req, res) => {
@@ -49,7 +50,7 @@ app.post("/login", (req, res) => {
         console.timeEnd("Loading time");
         console.log(``);
         return;
-    } else if ((req.body.username == "Jackson Bo" /* Any password works here */) && !logon) {
+    } else if ((req.body.username == prankUser_username /* Any password works here */) && !logon) {
         res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         console.log(`Jackson was rickrolled successfully.`);
         console.log(chalk.italic(getDateAndTime()));

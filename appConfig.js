@@ -17,6 +17,7 @@ let DatabaseLoadCount = 1;
 let LoginLoadCount = 1;
 let testingBoolean = false;
 let login = false;
+let prankUserName = `Jackson Bo`;
 
 // Define the function "getDateAndTime()"
 function getDateAndTime() {
@@ -98,4 +99,4 @@ const users = [
 ];
 
 // Export neccecary data
-export { app, port, portForward, paswrdPgLoadCount, DatabaseLoadCount, LoginLoadCount, testingBoolean, login, getDateAndTime, users, express };
+export { app, port, portForward, paswrdPgLoadCount, DatabaseLoadCount, LoginLoadCount, testingBoolean, login, getDateAndTime, users, express, prankUserName };
