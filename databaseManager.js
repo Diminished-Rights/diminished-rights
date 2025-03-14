@@ -22,7 +22,7 @@ app.get("/database", (req, res) => {
                 chairman: ["Ayden Lim"],
                 high_council: ["Luca Korolev", "Kaidi Hsu"],
                 honoured_members: [],
-                members: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Vishesh Kudva"],
+                members: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Vishesh Kudva", "Connor Borrell"],
                 caution: ["Marcus", "Aaron Liu"],
                 neutral: [],
                 protesters: ["Roland Liu", "Leni Reid"],
