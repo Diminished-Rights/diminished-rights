@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 
 // Setup constants
 const app = express();
-const port = 1500;
+const port =process.env.PORT || 1500;
 const portForward = true;
 
 // Quick use of express functions
