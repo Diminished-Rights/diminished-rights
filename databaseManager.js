@@ -20,9 +20,9 @@ app.get("/database", (req, res) => {
             res.render("database.ejs", {
                 // member hierarchy
                 chairman: ["Ayden Lim"],
-                high_council: ["Luca Korolev", "Kaidi Hsu"],
+                high_council: ["Luca Korolev", "Vishesh Kudva", "Kaidi Hsu"],
                 honoured_members: [],
-                members: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Vishesh Kudva", "Connor Borrell"],
+                members: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Connor Borrell"],
                 caution: ["Marcus", "Aaron Liu"],
                 neutral: [],
                 protesters: ["Roland Liu", "Leni Reid"],

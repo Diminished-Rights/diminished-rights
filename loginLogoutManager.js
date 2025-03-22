@@ -32,7 +32,7 @@ app.post("/login", (req, res) => {
             }
         }
     });
-    if ((SHA1(req.body.username) == "Mao is Great" && SHA1(req.body.password) == "All Hail Mao") && !logon) {
+    if ((req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") && !logon) {
         // check for generic login
         console.log(`Generic login detected!`);
         console.log(chalk.yellowBright(`User attempted to login using generic login, and will be redirected to the "403: Forbidden" page.`));
@@ -42,7 +42,7 @@ app.post("/login", (req, res) => {
         console.log(``);
         res.redirect("database.ejs")
         return;
-    } else if ((SHA1(req.body.username) == "rickroll me" && SHA1(req.body.password) == "please") && !logon) {
+    } else if ((req.body.username == "rickroll me" && req.body.password == "please") && !logon) {
         // check for easter egg
         res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         console.log(`User rickrolled successfully.`);
@@ -50,7 +50,7 @@ app.post("/login", (req, res) => {
         console.timeEnd("Loading time");
         console.log(``);
         return;
-    } else if ((SHA1(req.body.username) == prankUser_username /* Any password works here */) && !logon) {
+    } else if ((req.body.username == prankUser_username /* Any password works here */) && !logon) {
         res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         console.log(`Jackson was rickrolled successfully.`);
         console.log(chalk.italic(getDateAndTime()));
