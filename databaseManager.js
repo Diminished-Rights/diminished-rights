@@ -39,7 +39,6 @@ app.get("/database", (req, res) => {
                 head_of_secretery: ["Kaidi Hsu"],
                 award_manager: [],
                 web_developer: ["Vishesh Kudva", "Luca Korolev", "Connor Borrell"],
-                data_encrypter: ["Ayden Lim"],
             });
 
             console.log(`Database page loaded by the user: ${chalk.green(_user.user)}. (${DBLC})`);
