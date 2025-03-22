@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 // Setup constants
 const app = express();
 const port =process.env.PORT || 1500;
-const portForward = true;
+const portForward = false;
 
 // Quick use of express functions
 app.use(express.urlencoded({ extended: true }));
