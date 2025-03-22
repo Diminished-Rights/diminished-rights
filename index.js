@@ -72,13 +72,12 @@ setInterval(() => {
         .then(() => {
             console.log("SELF PING");
             console.timeEnd("Ping Interval");
-            console.log("");
             console.time("Ping Interval");
         })
         .catch(err => {
             console.error("Ping failed:", err);
         });
-}, 10000);
+}, 600000); // 600,000 milliseconds = 10 minutes
 
 // Imports files for export
 import './loginLogoutManager.js';
