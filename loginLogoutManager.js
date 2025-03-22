@@ -40,7 +40,7 @@ app.post("/login", (req, res) => {
         console.log(chalk.italic(getDateAndTime()));
         console.timeEnd("Loading time");
         console.log(``);
-        res.redirect("database.ejs")
+        res.redirect("database.ejs");
         return;
     } else if ((req.body.username == "rickroll me" && req.body.password == "please") && !logon) {
         // check for easter egg
@@ -58,8 +58,9 @@ app.post("/login", (req, res) => {
         console.log(``);
         return;
     } else if (!logon){
-        res.redirect("/")
-        console.log(chalk.bgRed.yellowBright("ALERT:") + chalk.yellow(` Attempted login with username "${req.body.username}" and password "${req.body.password}".`))
+        res.redirect("/");
+        console.log(chalk.bgRed.yellowBright("ALERT:") + chalk.yellow(` Attempted login with username "${req.body.username}" and password "${req.body.password}".`));
+        console.timeEnd("Loading time");
     }
     console.log(`Encryped Username: ${SHA1(req.body.username)}`)
     console.log(`Encrypted Password: ${SHA1(req.body.password)}`)

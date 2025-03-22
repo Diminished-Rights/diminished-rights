@@ -70,20 +70,20 @@ function getDateAndTime() {
         var time = "PM";
     } else {
         var time = "AM";
-    }
+    };
 
     const dateAndTime = `${date}-${month}-${year} ${hours}:${minutes}:${seconds} ${time}`;
 
     return dateAndTime;
-}
+};
 
 // Setup users
 class user {
     constructor(name, pass) {
         this.user = name;
         this.pass = pass;
-    }
-}
+    };
+};
 
 // Add users
 const users = [
