@@ -1,5 +1,5 @@
 // Imports required data
-import { app, users, getDateAndTime, login, LoginLoadCount, prankUserName } from './appConfig.js';
+import { app, users, getDateAndTime, login, LoginLoadCount, prankUserName, SHA1 } from './appConfig.js';
 import chalk from 'chalk';
 
 // Replaces constants with variables
@@ -21,9 +21,9 @@ app.post("/login", (req, res) => {
     users.forEach((_user, index) => {
         if (!logon) {
             console.log(`Checking username and password... ` + chalk.dim(`(${_user.user})`));
-            if (req.body.username == _user.user && req.body.password == _user.pass) {
+            if (SHA1(req.body.username) == _user.user && SHA1(req.body.password) == _user.pass) {
                 console.log(`User: ${chalk.green(_user.user)} successfully logged in!`);
-                res.cookie(`username`, req.body.username);
+                res.cookie(`username`, SHA1(req.body.username));
                 console.log(`Cookie set!`);
                 console.timeEnd("Loading time");
                 console.log(``);
@@ -32,7 +32,7 @@ app.post("/login", (req, res) => {
             }
         }
     });
-    if ((req.body.username == "Mao is Great" && req.body.password == "All Hail Mao") && !logon) {
+    if ((SHA1(req.body.username) == "Mao is Great" && SHA1(req.body.password) == "All Hail Mao") && !logon) {
         // check for generic login
         console.log(`Generic login detected!`);
         console.log(chalk.yellowBright(`User attempted to login using generic login, and will be redirected to the "403: Forbidden" page.`));
@@ -42,7 +42,7 @@ app.post("/login", (req, res) => {
         console.log(``);
         res.redirect("database.ejs")
         return;
-    } else if ((req.body.username == "rickroll me" && req.body.password == "please") && !logon) {
+    } else if ((SHA1(req.body.username) == "rickroll me" && SHA1(req.body.password) == "please") && !logon) {
         // check for easter egg
         res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         console.log(`User rickrolled successfully.`);
@@ -50,7 +50,7 @@ app.post("/login", (req, res) => {
         console.timeEnd("Loading time");
         console.log(``);
         return;
-    } else if ((req.body.username == prankUser_username /* Any password works here */) && !logon) {
+    } else if ((SHA1(req.body.username) == prankUser_username /* Any password works here */) && !logon) {
         res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         console.log(`Jackson was rickrolled successfully.`);
         console.log(chalk.italic(getDateAndTime()));
@@ -61,6 +61,8 @@ app.post("/login", (req, res) => {
         res.redirect("/")
         console.log(chalk.bgRed.yellowBright("ALERT:") + chalk.yellow(` Attempted login with username "${req.body.username}" and password "${req.body.password}".`))
     }
+    console.log(`Encryped Username: ${SHA1(req.body.username)}`)
+    console.log(`Encrypted Password: ${SHA1(req.body.password)}`)
 });
 
 // Handles the "/LogoutFunc" request
