@@ -16,12 +16,12 @@ body {
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 .red {
     background-color: #6e0000;
-    color: white;
+    color: black;
 }
 
 #aboutDRS {
