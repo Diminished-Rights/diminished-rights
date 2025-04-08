@@ -1,6 +1,7 @@
 // Import express and cookie-parser 
 import express from "express";
 import cookieParser from 'cookie-parser';
+import fs from 'fs';
 
 // Setup constants
 const app = express();
@@ -79,24 +80,57 @@ function getDateAndTime() {
 
 // Setup users
 class user {
-    constructor(name, pass) {
+    constructor(name, pass, acsLvl) {
         this.user = name;
         this.pass = pass;
+        this.level = acsLvl;
     };
 };
 
-// Add users
-const users = [
-    new user("d033e22ae348aeb5660fc2140aec35850c4da997", "24cd66d3898139938f73c3dea0e9b723338c35e9"), // admin
-    new user("4e25b1e22c001bf1440d77d072fd5602a97f2a17", "825b97c9e24661c66b850ae7c9da9f0e6dffbc04"), // updated!
-    new user("114443ec5ec52ae27ba5d46bbc77cb9716ce065b", "ebf0e1a684bd5271c183924b5cda55fe348af94a"), // updated!
-    new user("36dac6773b8e68cd58fd259d8c0d1aa991a06d67", "a61b5987f2c6383d17681ff3a0f10cfb686e919a"), // 
-    new user("6436a608b8b4f94d33466b9d5fa50e4ec915f5a0", "63722771253010888b3259dae57519750a483925"), // 
-    new user("8d3d6178c886e554ba284a58ff92d76a2fdc54bf", "2ba62822328d39d0bc9aa7f03e5afc36aa6d20a3"), // 
-    new user("a9ec5fa16a6e3592d31970976807f4e1713a9ae3", "dececb8c5dde321d746ff6800c49d72f24ebb783"), // 
-    new user("0207591131f036a8cb519e852e779cfa5028c444", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"), // 
-    new user("267a9a7c7e94dec97d8368bfa8c6fb9db7afa6e2", "816c52fd2bdd94a63cd0944823a6c0aa9384c103"), // updated!
-];
+// Path to the users.json file
+const USERS_FILE = './users.json';
+
+// Load users from the JSON file or use preset users as a fallback
+let users = [];
+if (fs.existsSync(USERS_FILE)) {
+    const data = fs.readFileSync(USERS_FILE, 'utf-8');
+    if (data.trim()) {
+        users = JSON.parse(data);
+        console.log('Users loaded from users.json');
+    } else {
+        console.log('users.json is empty. Using preset users.');
+        users = [
+            new user("d033e22ae348aeb5660fc2140aec35850c4da997", "5ad67e7a8aba0bc50d207d90f710614d3cac2253", 10), // admin
+            new user("4e25b1e22c001bf1440d77d072fd5602a97f2a17", "825b97c9e24661c66b850ae7c9da9f0e6dffbc04", 10), // updated!
+            new user("114443ec5ec52ae27ba5d46bbc77cb9716ce065b", "ebf0e1a684bd5271c183924b5cda55fe348af94a", 10), // updated!
+            new user("36dac6773b8e68cd58fd259d8c0d1aa991a06d67", "a61b5987f2c6383d17681ff3a0f10cfb686e919a", 1), // 
+            new user("6436a608b8b4f94d33466b9d5fa50e4ec915f5a0", "63722771253010888b3259dae57519750a483925", 1), // 
+            new user("8d3d6178c886e554ba284a58ff92d76a2fdc54bf", "2ba62822328d39d0bc9aa7f03e5afc36aa6d20a3", 1), // 
+            new user("a9ec5fa16a6e3592d31970976807f4e1713a9ae3", "dececb8c5dde321d746ff6800c49d72f24ebb783", 1), // 
+            new user("0207591131f036a8cb519e852e779cfa5028c444", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 1), // 
+            new user("267a9a7c7e94dec97d8368bfa8c6fb9db7afa6e2", "816c52fd2bdd94a63cd0944823a6c0aa9384c103", 10), // updated!
+        ];
+    }
+} else {
+    console.log('users.json not found. Using preset users.');
+    users = [
+        new user("d033e22ae348aeb5660fc2140aec35850c4da997", "5ad67e7a8aba0bc50d207d90f710614d3cac2253", 10), // admin
+        new user("4e25b1e22c001bf1440d77d072fd5602a97f2a17", "825b97c9e24661c66b850ae7c9da9f0e6dffbc04", 10), // updated!
+        new user("114443ec5ec52ae27ba5d46bbc77cb9716ce065b", "ebf0e1a684bd5271c183924b5cda55fe348af94a", 10), // updated!
+        new user("36dac6773b8e68cd58fd259d8c0d1aa991a06d67", "a61b5987f2c6383d17681ff3a0f10cfb686e919a", 1), // 
+        new user("6436a608b8b4f94d33466b9d5fa50e4ec915f5a0", "63722771253010888b3259dae57519750a483925", 1), // 
+        new user("8d3d6178c886e554ba284a58ff92d76a2fdc54bf", "2ba62822328d39d0bc9aa7f03e5afc36aa6d20a3", 1), // 
+        new user("a9ec5fa16a6e3592d31970976807f4e1713a9ae3", "dececb8c5dde321d746ff6800c49d72f24ebb783", 1), // 
+        new user("0207591131f036a8cb519e852e779cfa5028c444", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8", 1), // 
+        new user("267a9a7c7e94dec97d8368bfa8c6fb9db7afa6e2", "816c52fd2bdd94a63cd0944823a6c0aa9384c103", 10), // updated!
+    ];
+}
+
+// Save users to file whenever the array is updated
+function saveUsersToFile() {
+    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+    console.log('Users saved to file.');
+}
 
 /**
 *  Secure Hash Algorithm (SHA1)
@@ -258,4 +292,4 @@ function SHA1 (msg) {
 }
 
 // Export neccecary data
-export { app, port, portForward, paswrdPgLoadCount, DatabaseLoadCount, LoginLoadCount, testingBoolean, login, getDateAndTime, users, express, prankUserName, SHA1 };
+export { app, port, portForward, paswrdPgLoadCount, DatabaseLoadCount, LoginLoadCount, testingBoolean, login, getDateAndTime, user, users, express, prankUserName, SHA1, saveUsersToFile };
