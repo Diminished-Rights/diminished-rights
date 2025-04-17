@@ -65,20 +65,6 @@ app.listen(port, () => {
     console.log(``);
 });
 
-console.time("Ping Interval");
-
-setInterval(() => {
-    fetch("https://diminished-rights.onrender.com")
-        .then(() => {
-            console.log("SELF PING");
-            console.timeEnd("Ping Interval");
-            console.time("Ping Interval");
-        })
-        .catch(err => {
-            console.error("Ping failed:", err);
-        });
-}, 600000); // 600,000 milliseconds = 10 minutes
-
 // Imports files for export
 import './loginLogoutManager.js';
 import './databaseManager.js';
