@@ -9,7 +9,7 @@ let prankUser_username = prankUserName;
 
 // Renders "/login.js"
 app.get("/login.ejs", (req, res) => {
-    res.render("login.ejs");
+    res.status(200).render("login.ejs");
     console.log(`Login page loaded. (${LLC})`);
     LLC++;
 });
@@ -27,7 +27,7 @@ app.post("/login", (req, res) => {
                 console.log(`Cookie set!`);
                 console.timeEnd("Loading time");
                 console.log(``);
-                res.redirect("/database");
+                res.status(100).redirect("/database");
                 logon = true;
             }
         }
@@ -40,7 +40,7 @@ app.post("/login", (req, res) => {
         console.log(chalk.italic(getDateAndTime()));
         console.timeEnd("Loading time");
         console.log(``);
-        res.redirect("database.ejs");
+        res.status(401).redirect("database.ejs");
         return;
     } else if ((req.body.username == "rickroll me" && req.body.password == "please") && !logon) {
         // check for easter egg
@@ -51,14 +51,14 @@ app.post("/login", (req, res) => {
         console.log(``);
         return;
     } else if ((req.body.username == prankUser_username /* Any password works here */) && !logon) {
-        res.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        res.status(418).redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         console.log(`Jackson was rickrolled successfully.`);
         console.log(chalk.italic(getDateAndTime()));
         console.timeEnd("Loading time");
         console.log(``);
         return;
     } else if (!logon){
-        res.redirect("/");
+        res.status(401).redirect("/");
         console.log(chalk.bgRed.yellowBright("ALERT:") + chalk.yellow(` Attempted login with username "${req.body.username}" and password "${req.body.password}".`));
         console.timeEnd("Loading time");
     }
@@ -72,6 +72,6 @@ app.post("/LogoutFunc", (req, res) => {
     res.clearCookie('username');
     console.log(`Cookies cleared.`)
     console.log(chalk.italic(getDateAndTime()));
-    res.redirect("/")
+    res.status(200).redirect("/")
     console.log(``)
 });

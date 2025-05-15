@@ -87,16 +87,59 @@ class user {
 
 // Add users
 const users = [
-    new user("d033e22ae348aeb5660fc2140aec35850c4da997", "24cd66d3898139938f73c3dea0e9b723338c35e9"), // admin
+    new user("d033e22ae348aeb5660fc2140aec35850c4da997", "6ebfe5e505b06fbd6bef17c2d5ed959c3b1f2346"), // admin
     new user("4e25b1e22c001bf1440d77d072fd5602a97f2a17", "825b97c9e24661c66b850ae7c9da9f0e6dffbc04"), // updated!
     new user("114443ec5ec52ae27ba5d46bbc77cb9716ce065b", "ebf0e1a684bd5271c183924b5cda55fe348af94a"), // updated!
-    new user("36dac6773b8e68cd58fd259d8c0d1aa991a06d67", "a61b5987f2c6383d17681ff3a0f10cfb686e919a"), // 
-    new user("6436a608b8b4f94d33466b9d5fa50e4ec915f5a0", "63722771253010888b3259dae57519750a483925"), // 
-    new user("8d3d6178c886e554ba284a58ff92d76a2fdc54bf", "2ba62822328d39d0bc9aa7f03e5afc36aa6d20a3"), // 
-    new user("a9ec5fa16a6e3592d31970976807f4e1713a9ae3", "dececb8c5dde321d746ff6800c49d72f24ebb783"), // 
-    new user("0207591131f036a8cb519e852e779cfa5028c444", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"), // 
+    // new user("36dac6773b8e68cd58fd259d8c0d1aa991a06d67", "a61b5987f2c6383d17681ff3a0f10cfb686e919a"), // 
+    // new user("6436a608b8b4f94d33466b9d5fa50e4ec915f5a0", "63722771253010888b3259dae57519750a483925"), // 
+    // new user("8d3d6178c886e554ba284a58ff92d76a2fdc54bf", "2ba62822328d39d0bc9aa7f03e5afc36aa6d20a3"), // 
+    // new user("a9ec5fa16a6e3592d31970976807f4e1713a9ae3", "dececb8c5dde321d746ff6800c49d72f24ebb783"), // 
+    // new user("0207591131f036a8cb519e852e779cfa5028c444", "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"), // 
     new user("267a9a7c7e94dec97d8368bfa8c6fb9db7afa6e2", "816c52fd2bdd94a63cd0944823a6c0aa9384c103"), // updated!
 ];
+
+function encrypt(str, key = 12) {
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    const charCode = (str.charCodeAt(i) + key) % 256;
+    result += String.fromCharCode(charCode);
+  }
+  return result;
+}
+
+function decrypt(str, key = 12) {
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    const charCode = (str.charCodeAt(i) - key + 256) % 256;
+    result += String.fromCharCode(charCode);
+  }
+  return result;
+}
+
+const memberData = {
+    hierarchy: {
+        chairman: [encrypt("Ayden Lim")],
+        high_council: [encrypt("Luca Korolev"), encrypt("Vishesh Kudva"), encrypt("Kaidi Hsu")],
+        honoured_members: [],
+        members: [encrypt("Orion Huang"), encrypt("Angus McDonnell"), encrypt("Myeongjo Seo"), encrypt("Connor Borrell")],
+        caution: [encrypt("Marcus"), encrypt("Aaron Liu")],
+        neutral: [],
+        protesters: [encrypt("Roland Liu"), encrypt("Leni Reid")],
+        enemies: [encrypt("Mr Bevan Galbraith"), encrypt("Aaron Liu"), encrypt("Mr Timothy Dent")],
+        betrayers: [encrypt("Alan Lee")],
+        targets: [encrypt("Alex Kim"), encrypt("Jackson Bo")],
+        high_threat: [encrypt("Connor McCracken")],
+    },
+    roles: {
+        junior_branch_leader: [],
+        head_of_act: [encrypt("Luca Korolev")],
+        head_of_intelligence: [],
+        head_of_defence: [encrypt("Ayden Lim")],
+        head_of_secretery: [encrypt("Kaidi Hsu")],
+        award_manager: [],
+        web_developer: [encrypt("Vishesh Kudva"), encrypt("Luca Korolev"), encrypt("Connor Borrell")],
+    }
+};
 
 /**
 *  Secure Hash Algorithm (SHA1)
@@ -258,4 +301,4 @@ function SHA1 (msg) {
 }
 
 // Export neccecary data
-export { app, port, portForward, paswrdPgLoadCount, DatabaseLoadCount, LoginLoadCount, testingBoolean, login, getDateAndTime, users, express, prankUserName, SHA1 };
+export { app, port, portForward, paswrdPgLoadCount, DatabaseLoadCount, LoginLoadCount, testingBoolean, login, getDateAndTime, users, express, prankUserName, SHA1, memberData, encrypt, decrypt };

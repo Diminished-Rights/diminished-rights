@@ -1,5 +1,5 @@
 // Imports required data as well as Chalk
-import { app, users, getDateAndTime, DatabaseLoadCount } from './appConfig.js';
+import { app, users, getDateAndTime, DatabaseLoadCount, encrypt, decrypt, memberData } from './appConfig.js';
 import chalk from 'chalk';
 
 // Replaces constants with variables
@@ -8,7 +8,7 @@ let loadAuth = null;
 
 // Redirect to "/database"
 app.get("/database.ejs", (req, res) => {
-    res.redirect("/database");
+    res.status(301).redirect("/database");
 });
 
 // Renders "/database"
@@ -17,28 +17,22 @@ app.get("/database", (req, res) => {
     console.time("Time loading");
     users.forEach((_user, index) => {
         if (req.cookies.username == _user.user) {
-            res.render("database.ejs", {
+            res.status(200).render("database.ejs", {
                 // member hierarchy
-                chairman: ["Ayden Lim"],
-                high_council: ["Luca Korolev", "Vishesh Kudva", "Kaidi Hsu"],
-                honoured_members: [],
-                members: ["Orion Huang", "Angus McDonnell", "Myeongjo Seo", "Connor Borrell"],
-                caution: ["Marcus", "Aaron Liu"],
-                neutral: [],
-                protesters: ["Roland Liu", "Leni Reid"],
-                enemies: ["Mr Bevan Galbraith", "Aaron Liu", "Mr Timothy Dent"],
-                betrayers: ["Alan Lee"],
-                targets: ["Alex Kim", "Jackson Bo"],
-                high_threat: ["Connor McCracken"],
+                ...Object.entries(memberData.hierarchy).reduce((acc, [key, value]) => {
+                    acc[key] = Array.isArray(value)
+                        ? value.map(v => decrypt(v, 12))
+                        : decrypt(value, 12);
+                    return acc;
+                }, {}),
 
                 // member roles
-                junior_branch_leader: [],
-                head_of_act: ["Luca Korolev"],
-                head_of_intelligence: [],
-                head_of_defence: ["Ayden Lim"],
-                head_of_secretery: ["Kaidi Hsu"],
-                award_manager: [],
-                web_developer: ["Vishesh Kudva", "Luca Korolev", "Connor Borrell"],
+                ...Object.entries(memberData.roles).reduce((acc, [key, value]) => {
+                    acc[key] = Array.isArray(value)
+                        ? value.map(v => decrypt(v, 12))
+                        : decrypt(value, 12);
+                    return acc;
+                }, {}),
             });
 
             console.log(`Database page loaded by the user: ${chalk.green(_user.user)}. (${DBLC})`);

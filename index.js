@@ -20,7 +20,7 @@ let login = false;
 
 // Renders the home page at "/"
 app.get("/", (req, res) => {
-    res.render("index.ejs", {
+    res.status(200).render("index.ejs", {
         userNum: PPLC,
         testing: testingBoolean,
         terminalDate: getDateAndTime(),
@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 
 // Redirect to "/"
 app.get("/index.ejs", (req, res) => {
-    res.redirect("/");
+    res.status(301).redirect("/");
 });
 
 // listen to port
