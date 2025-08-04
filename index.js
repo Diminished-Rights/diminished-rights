@@ -37,6 +37,10 @@ app.get("/index.ejs", (req, res) => {
     res.status(301).redirect("/");
 });
 
+app.get("/about", (req, res) => {
+    res.status(200).render('about.ejs');
+});
+
 // listen to port
 app.listen(port, () => {
     // log server start
