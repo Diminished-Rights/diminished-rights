@@ -1,17 +1,14 @@
 // Imports required data
-import { app, users, getDateAndTime, login, LoginLoadCount, prankUserName, SHA1 } from './appConfig.js';
+import { app, users, getDateAndTime, login, prankUserName, SHA1 } from './appConfig.js';
 import chalk from 'chalk';
 
 // Replaces constants with variables
-let LLC = LoginLoadCount;
 let logon = login;
 let prankUser_username = prankUserName;
 
 // Renders "/login.js"
 app.get("/login.ejs", (req, res) => {
-    res.status(200).render("login.ejs");
-    console.log(`Login page loaded. (${LLC})`);
-    LLC++;
+    res.status(301).redirect("/");
 });
 
 // Handles the "/login" request

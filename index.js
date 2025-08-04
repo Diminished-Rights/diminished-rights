@@ -37,10 +37,6 @@ app.get("/index.ejs", (req, res) => {
     res.status(301).redirect("/");
 });
 
-app.get("/about", (req, res) => {
-    res.status(200).render('about.ejs');
-});
-
 // listen to port
 app.listen(port, () => {
     // log server start
@@ -67,6 +63,39 @@ app.listen(port, () => {
     console.log(`The page loadings will be logged underneath.`)
     console.log(``);
     console.log(``);
+});
+
+// 404 Error
+app.use((req, res, next) => {
+    console.log(chalk.blue(`Request received: `) + chalk.green(req.method) + ` ` + chalk.yellow(req.url));
+    console.log(chalk.blue(`Request date: `) + chalk.green(getDateAndTime()));
+    console.log(``);
+
+    res.status(404).send(`
+        <center>
+            <pre>
+                ERR_404_NOT_FOUND
+            </pre>
+            <img src="https://http.cat/404.jpg" alt="404 Not Found Cat" style="display: block; margin: 0 auto;">
+        </center>
+    `);
+    next();
+});
+
+// 500 Error
+app.use((err, req, res, next) => {
+    console.error(chalk.red(`Error occurred: `) + chalk.green(err.message));
+    console.error(chalk.red(`Error date: `) + chalk.green(getDateAndTime()));
+    console.log(``);
+
+    res.status(500 || err.status).send(`
+        <center>
+            <pre>
+                ERR_500_INTERNAL_SERVER_ERROR
+            </pre>
+            <img src="https://http.cat/${500 || err.status}.jpg" alt="${500 || err.status} Internal Server Error Cat" style="display: block; margin: 0 auto;">
+        </center>
+    `);
 });
 
 // Imports files for export

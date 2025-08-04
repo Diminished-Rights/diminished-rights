@@ -14,7 +14,6 @@ app.use(cookieParser());
 // Set up variables
 let paswrdPgLoadCount = 1;
 let DatabaseLoadCount = 1;
-let LoginLoadCount = 1;
 let testingBoolean = false;
 let login = false;
 let prankUserName = `Jackson Bo`;
@@ -301,4 +300,4 @@ function SHA1 (msg) {
 }
 
 // Export neccecary data
-export { app, port, portForward, paswrdPgLoadCount, DatabaseLoadCount, LoginLoadCount, testingBoolean, login, getDateAndTime, users, express, prankUserName, SHA1, memberData, encrypt, decrypt };
+export { app, port, portForward, paswrdPgLoadCount, DatabaseLoadCount, testingBoolean, login, getDateAndTime, users, express, prankUserName, SHA1, memberData, encrypt, decrypt };
