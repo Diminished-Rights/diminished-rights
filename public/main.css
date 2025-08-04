@@ -129,6 +129,7 @@ button,
 [type="reset"],
 [type="submit"] {
     -webkit-appearance: button;
+    appearance: button;
 }
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -168,6 +169,7 @@ textarea {
 }
 [type="search"] {
     -webkit-appearance: textfield;
+    appearance: textfield;
     outline-offset: -2px;
 }
 [type="search"]::-webkit-search-decoration {
@@ -892,11 +894,11 @@ a {
 .w3-row-padding > .w3-threequarter,
 .w3-row-padding > .w3-quarter,
 .w3-row-padding > .w3-col {
-    padding: 0 8px;
+    padding: 0 32px;
 }
 .w3-container,
 .w3-panel {
-    padding: 0.01em 16px;
+    padding: 0.01em 64px;
 }
 .w3-panel {
     margin-top: 16px;
