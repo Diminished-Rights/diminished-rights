@@ -1,216 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<body class="red">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>DATABASE</title>
+    <title>Diminished Rights Society — Database</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- use same CSS files as index.ejs so the styling matches -->
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="special.css" />
+    <link rel="stylesheet" href="main2.css" />
 </head>
-<body id="top">
-    <form class="white" action="/LogoutFunc" method="POST" style="display:block;">
-        <button type="submit" style="background:none;border:none;color:inherit;cursor:pointer;">Logout</button>
-    </form>
-    <hr>
-    <h1>Database of People</h1>
-    <a class="white" href="#Roles">To Roles</a>
-    <hr>
-    <h2 id="Hierachy">Hierachy</h2>
-    <table class="center">
-        <tr>
-            <td>
-                <p><b>Chairman:</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < chairman.length; i++) { %>
-                <p> <%= chairman[i] %></p>                
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>High Council Members:</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < high_council.length; i++) { %>
-                <p> <%= high_council[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Hounoured Members:</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < honoured_members.length; i++) { %>
-                <p> <%= honoured_members[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Members:</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < members.length; i++) { %>
-                <p> <%= members[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Caution:</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < caution.length; i++) { %>
-                <p> <%= caution[i] %></p>                
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Neutral</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < neutral.length; i++) { %>
-                <p> <%= neutral[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Protesters:</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < protesters.length; i++) { %>
-                <p> <%= protesters[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Enemies:</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < enemies.length; i++) { %>
-                <p> <%= enemies[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Betrayers:</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < betrayers.length; i++) { %>
-                <p> <%= betrayers[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Targets</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < targets.length; i++) { %>
-                <p> <%= targets[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>High Threat</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < high_threat.length; i++) { %>
-                <p> <%= high_threat[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-    </table>    
-    <a class="white" href="#Hierachy">To Hierachy</a>
-    <hr>
+
+<body id="bodyTop">
+
+    <!-- Navbar (same look as index.ejs) -->
+    <div class="w3-top">
+        <div class="w3-bar w3-theme-d2 w3-left-align">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2"
+                href="javascript:void(0);" onclick="openNav()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="/" class="w3-bar-item w3-button w3-teal">The DRS</a>
+            <a href="/" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Home</a>
+            <a href="#database" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Database</a>
+
+            <form action="/LogoutFunc" method="POST" style="display:inline; float:right; margin-right:8px;">
+                <button class="w3-bar-item w3-button w3-hover-red" type="submit"
+                    style="background:none;border:none;color:inherit;cursor:pointer;">
+                    Logout
+                </button>
+            </form>
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+            <a href="/" class="w3-bar-item w3-button">Home</a>
+            <a href="#database" class="w3-bar-item w3-button">Database</a>
+        </div>
+    </div>
+
+    <!-- Image Header -->
+    <div class="w3-display-container w3-animate-opacity">
+        <img src="revolution.png" alt="boat" style="width: 100%; min-height: 350px; max-height: 600px;" />
+        <div class="w3-container w3-display-bottomleft w3-margin-bottom">
+            <button onclick="document.getElementById('id01').style.display='block'"
+                class="w3-button w3-xlarge w3-theme w3-hover-teal" title="Go To W3.CSS">For Mr Bevan Galbraith</button>
+        </div>
+    </div>
+
+    <!-- Main database content -->
+    <div class="w3-container w3-padding-64 w3-center" id="database">
+        <h2>Database of People</h2>
+        <p class="w3-text-grey">Hierarchy & Roles</p>
+
+        <!-- Add / Assign Member Form -->
+        <div class="w3-card w3-white w3-padding w3-margin" style="max-width:720px; margin: 0 auto 24px;">
+            <h4>Add or Assign Member</h4>
+            <form action="/add-or-assign-person" method="POST" class="w3-row-padding w3-margin-top">
+                <!-- Action Selection -->
+                <div class="w3-col s12">
+                    <label for="actionSelect">Select Action</label>
+                    <select class="w3-select w3-border" name="action" id="actionSelect" required>
+                        <option value="" disabled selected>Choose Action</option>
+                        <option value="add">Add Member to Hierarchy</option>
+                        <option value="assign">Assign Member to Role</option>
+                    </select>
+                </div>
+
+                <!-- Add Member Section -->
+                <div id="addSection" class="w3-col s12 w3-margin-top" style="display:none;">
+                    <label for="name">Member Name</label>
+                    <input class="w3-input w3-border" type="text" name="name" placeholder="Enter member name">
+
+                    <label for="hierarchyCategory">Hierarchy Category</label>
+                    <select class="w3-select w3-border" name="hierarchyCategory">
+                        <option value="" disabled selected>Choose Hierarchy Category</option>
+                        <option value="chairman">Chairman</option>
+                        <option value="high_council">High Council</option>
+                        <option value="honoured_members">Honoured Members</option>
+                        <option value="members">Members</option>
+                        <option value="caution">Caution</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="protesters">Protesters</option>
+                        <option value="enemies">Enemies</option>
+                        <option value="betrayers">Betrayers</option>
+                        <option value="targets">Targets</option>
+                        <option value="high_threat">High Threat</option>
+                    </select>
+                </div>
+
+                <!-- Assign Member Section -->
+                <div id="assignSection" class="w3-col s12 w3-margin-top" style="display:none;">
+                    <label for="memberName">Select Member from Hierarchy</label>
+                    <select class="w3-select w3-border" name="memberName">
+                        <option value="" disabled selected>Choose member</option>
+                        <% Object.keys(memberData.hierarchy).forEach(category=> { %>
+                            <% memberData.hierarchy[category].forEach(member=> { %>
+                                <option value="<%= member %>">
+                                    <%= member %> (<%= category %>)
+                                </option>
+                                <% }) %>
+                                    <% }) %>
+                    </select>
+
+                    <label for="roleCategory">Select Role</label>
+                    <select class="w3-select w3-border" name="roleCategory">
+                        <option value="" disabled selected>Choose role</option>
+                        <option value="junior_branch_leader">Junior Branch Leader</option>
+                        <option value="head_of_act">Head of Act</option>
+                        <option value="head_of_intelligence">Head of Intelligence</option>
+                        <option value="head_of_defence">Head of Defence</option>
+                        <option value="head_of_secretery">Head of Secretery</option>
+                        <option value="award_manager">Award Manager</option>
+                        <option value="web_developer">Web Developer</option>
+                    </select>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="w3-col s12 w3-margin-top">
+                    <button class="w3-button w3-teal" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            const actionSelect = document.getElementById('actionSelect');
+            const addSection = document.getElementById('addSection');
+            const assignSection = document.getElementById('assignSection');
+
+            actionSelect.addEventListener('change', () => {
+                if (actionSelect.value === 'add') {
+                    addSection.style.display = 'block';
+                    assignSection.style.display = 'none';
+                } else if (actionSelect.value === 'assign') {
+                    addSection.style.display = 'none';
+                    assignSection.style.display = 'block';
+                } else {
+                    addSection.style.display = 'none';
+                    assignSection.style.display = 'none';
+                }
+            });
+        </script>
 
 
-    <h2 id="Roles">Roles</h2>
-    <table class="center">
-        <tr>
-            <td>
-                <p><b>Junior Branch Leader</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < junior_branch_leader.length; i++) { %>
-                <p> <%= junior_branch_leader[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Head of Act</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < head_of_act.length; i++) { %>
-                <p> <%= head_of_act[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Head of Intelligence</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < head_of_intelligence.length; i++) { %>
-                <p> <%= head_of_intelligence[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Head of Defence</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < head_of_defence.length; i++) { %>
-                <p> <%= head_of_defence[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Head of Secretery</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < head_of_secretery.length; i++) { %>
-                <p> <%= head_of_secretery[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Award Manager</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < award_manager.length; i++) { %>
-                <p> <%= award_manager[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p><b>Web Developer</b></p>
-            </td>
-            <td>
-            <% for (let i = 0; i < web_developer.length; i++) { %>
-                <p> <%= web_developer[i] %></p>
-            <% } %>
-            </td>
-        </tr>
-    </table>
-    <hr>
-    <a class="white" href="#top">Back to top</a>
+        <!-- Hierarchy Table -->
+        <div class="w3-responsive w3-margin-top" style="max-width:1100px; margin: 0 auto;">
+            <table class="w3-table-all w3-hoverable">
+                <thead>
+                    <tr class="w3-teal">
+                        <th style="width:18%">Category</th>
+                        <th>People (click Remove to delete)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% Object.keys(memberData.hierarchy).forEach(category=> { %>
+                        <tr>
+                            <td><b>
+                                    <%= category.replace(/_/g, ' ' ).replace(/\b\w/g, c=> c.toUpperCase()) %>
+                                </b></td>
+                            <td>
+                                <% memberData.hierarchy[category].forEach(member=> { %>
+                                    <div class="w3-row w3-padding-small">
+                                        <div class="w3-col m9 s8"><span>
+                                                <%= member %>
+                                            </span></div>
+                                        <div class="w3-col m3 s4 w3-right-align">
+                                            <form action="/remove-user" method="POST" style="display:inline;">
+                                                <input type="hidden" name="category" value="<%= category %>">
+                                                <input type="hidden" name="name" value="<%= member %>">
+                                                <button class="w3-button w3-red w3-small" type="submit">Remove</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Roles Table -->
+        <div class="w3-responsive w3-margin-top" style="max-width:1100px; margin: 32px auto 0;">
+            <h3>Roles</h3>
+            <table class="w3-table-all w3-hoverable">
+                <thead>
+                    <tr class="w3-teal">
+                        <th style="width:20%">Role</th>
+                        <th>Assigned Members</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% Object.keys(memberData.roles).forEach(role=> { %>
+                        <tr>
+                            <td><b>
+                                    <%= role.replace(/_/g, ' ' ).replace(/\b\w/g, c=> c.toUpperCase()) %>
+                                </b></td>
+                            <td>
+                                <% memberData.roles[role].forEach(member=> { %>
+                                    <div class="w3-row w3-padding-small">
+                                        <div class="w3-col m9 s8"><span>
+                                                <%= member %>
+                                            </span></div>
+                                        <div class="w3-col m3 s4 w3-right-align">
+                                            <form action="/remove-role-member" method="POST" style="display:inline;">
+                                                <input type="hidden" name="role" value="<%= role %>">
+                                                <input type="hidden" name="name" value="<%= member %>">
+                                                <button class="w3-button w3-red w3-small" type="submit">Remove</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </body>
 
 <script>
-    alert(`The database is now holding sensitive info. Be careful who you share this data with.`);
+    alert("WARNING: Beta Zone - v2.0.0-beta")
 </script>
-</body>
+
 </html>
